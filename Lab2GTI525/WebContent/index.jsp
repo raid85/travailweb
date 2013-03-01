@@ -102,12 +102,12 @@ ddsmoothmenu.init({
 
 <div id="templatemo_main_top"></div>
 <div id="templatemo_main">
-    <center>
-	<div class="fp_box5b">
-        <a href="spectacles.html"><img src="images/applications.png" alt="Image 01" />
-        <h2>Rechercher Spectacle</a></h2>
-        <p><center>Aller vers la section des scpectacles disponibles</center></p>
-    </div></center>
+<center>
+	<form> 	
+	<input type="submit" class="button_cmd" value="Rechercher Spectacles"/>
+	<input type="hidden" name="action"  value="chercheSpectacles" />
+	 </form>
+</center>
    
    
     

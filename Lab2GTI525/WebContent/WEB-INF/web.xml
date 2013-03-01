@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
   <display-name>Lab2GTI525</display-name>
+
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+
+	<!-- Déclaration du servlet FrontControlerServlet -->
+    <servlet>
+	
+		<servlet-name>FrontControlerServlet</servlet-name>
+		<servlet-class>controleur.FrontControlerServlet</servlet-class>
+	
+		<!-- Initialisation des paramètres -->
+		<init-param>        
+       		<param-name></param-name> 
+       		<param-value></param-value> 
+   		</init-param>
+
+
+	</servlet>
+	
+	<!-- Mapping du servlet avec un url  -->
+	<servlet-mapping>
+		<servlet-name>FrontControlerServlet</servlet-name>
+		<url-pattern>/FrontControlerServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Redirection vers la page d'erreur plutôt que la page par défaut  -->
+  	<error-page>
+  		<error-code>404</error-code>
+    	<location>/erreur.jsp</location>
+	</error-page>	
+
+	
+
 </web-app>
