@@ -23,17 +23,17 @@ public class Controleur {
 		if (request.getParameterMap().size() < 1){	
 				
 			
-			System.out.println("Mangez mon sushi3");
+				System.out.println("TRACE Controleur: Premier load de la page");
 				return "index.jsp";
 			}
 			
 		else if (request.getParameter("action").equals("chercheSpectacles")){
 
 			
-			System.out.println("Mangez mon sushi");
-				return "erreur.jsp";}else
+				System.out.println("TRACE Controleur: Btn Rechercher Spectacles clicked");
+				return "spectacles.jsp";}else
 					
-					return "erreur.jsp";
+				return "erreur.jsp";
 			
 		
 }

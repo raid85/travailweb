@@ -103,7 +103,7 @@ ddsmoothmenu.init({
 <div id="templatemo_main_top"></div>
 <div id="templatemo_main">
 <center>
-	<form> 	
+	<form action="./" method = "post"> 	
 	<input type="submit" class="button_cmd" value="Rechercher Spectacles"/>
 	<input type="hidden" name="action"  value="chercheSpectacles" />
 	 </form>
