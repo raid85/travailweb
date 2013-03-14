@@ -9,6 +9,8 @@ package controleur;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.DelegateSpectacles;
+
 
 
 
@@ -31,7 +33,25 @@ public class Controleur {
 
 			
 				System.out.println("TRACE Controleur: Btn Rechercher Spectacles clicked");
-				return "spectacles.jsp";}else
+				
+				DelegateSpectacles myDelegate = new DelegateSpectacles();
+				System.out.println(myDelegate.getSpectacles().get(0).getNom());
+				request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
+				
+				
+				return "spectacles.jsp";
+				}
+		else if (request.getParameter("action").equals("voirRepresentations")){
+
+			
+			System.out.println("TRACE Controleur: Btn voirRepresentations clicked");
+			
+			DelegateSpectacles myDelegate = new DelegateSpectacles();
+			System.out.println("TRACE: " + myDelegate.getSpectacles().get(0).getNom());
+			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
+			
+			
+			return "representations.jsp";}else
 					
 				return "erreur.jsp";
 			

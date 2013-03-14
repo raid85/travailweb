@@ -3,7 +3,7 @@
   <Contents>
     <Image Source="contents/piecemaker1.png" Title="Combat de Georges St-Pierre">
 		<Text>&lt;h1&gt;UFC 158: ST-PIERRE vs. PENN.&lt;/p&gt;&lt;p&gt;SAMEDI, MARS 16, 2013&lt;/p&gt;&lt;p&gt;Centre Bell, Montréal&lt;/p&gt;&lt;p&gt;Ouverture de sale 5:30pm - Spectacle 6:30 pm.&lt;/p&gt;</Text>
-		<Hyperlink URL="representations.html" Target="_self" />
+		<Hyperlink URL="representations.jsp" Target="_self" />
 	</Image>		
    
   </Contents>

@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.ArrayList;
+
 
 
 
@@ -11,7 +13,7 @@ public class BeanSpectacle implements java.io.Serializable {
 	private String thumbnail;
 	private String poster;
 	private String description;
-	private BeanRepresentation[] listeRepresentations; //popupléée par plusieurs BeanRepresentation
+	private ArrayList<BeanRepresentation> listeRepresentations = new ArrayList<BeanRepresentation>(); //popupléée par plusieurs BeanRepresentation
 	
 	public int getId() {
 		return id;
@@ -38,10 +40,10 @@ public class BeanSpectacle implements java.io.Serializable {
 		this.poster = poster;
 	}
 	
-	public BeanRepresentation[] getListeRepresentations() {
+	public ArrayList<BeanRepresentation> getListeRepresentations() {
 		return listeRepresentations;
 	}
-	public void setListeRepresentations(BeanRepresentation[] listeRepresentations) {
+	public void setListeRepresentations(ArrayList<BeanRepresentation> listeRepresentations) {
 		this.listeRepresentations = listeRepresentations;
 	}
 	

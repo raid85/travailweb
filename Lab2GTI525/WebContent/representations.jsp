@@ -1,4 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page import="modele.BeanSpectacle"%>
+<%@ page import="java.util.ArrayList;"%>
+<%
+ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,7 +26,7 @@ function clearText(field)
 <script type="text/javascript" language="JavaScript">
 function AskAndSubmit(t)
 {
-  var answer = confirm("Vous étes sûr de vouloir réserver XXX billets?");
+  var answer = confirm("Vous Ã©tes sÃ»r de vouloir rÃ©server XXX billets?");
   if (answer)
   {
     t.form.submit();
@@ -78,18 +86,14 @@ ddsmoothmenu.init({
         <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html">Accueil</a></li>
-               
-                <li><a href="spectacles.html">Spectacles</a>
-                   
-                </li>
-                <li><a href="panier.html">Panier</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                     <li><a href="index.jsp" class="selected">Accueil</a></li>
+                <li><a href="spectacles.jsp">Spectacles</a>     </li>
+                <li><a href="panier.jsp">Panier</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
 				<li>
-				<! Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html
-				>
+				<!--  Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html--> 
 				
-				<form method="GET" action="http://www.google.com/search">
+				<form method="get" action="http://www.google.com/search">
 <input type="text" name="q" size="20" maxlength="255" />
 <input type="submit" name="btnG" VALUE="Rechercher" />
 <input type="hidden" name="domains" value="YOUR DOMAIN NAME" />
@@ -104,55 +108,52 @@ ddsmoothmenu.init({
 
 <div id="templatemo_main">
 	<div class="col col_23">
-        <h2>Représentations</h2>
-        <img src="images/templatemo_image_04b.jpg" alt="Amaluna" class="float_l img_float_l" />
+        <h2>ReprÃ©sentations</h2>
+        <img src=<%=spectacles.get(0).getPoster()%> alt=<%=spectacles.get(0).getNom()%> class="float_l img_float_l" />
 		  <p><em> Prix du spectacle: 159$</em></p>
-          <p><em> Durée du spectacle</em></p>
+          <p><em> DurÃ©e du spectacle</em></p>
 <p>Le spectacle dure 2 h 30, incluant un entracte de 30 minutes.</p>
 <p><em>Retardataires</em></p>
-<p>La représentation commence à l'heure. L'entrée des retardataires s'effectue lors de moments jugés opportuns par les placiers. Les personnes en fauteuil roulant qui arrivent en retard ne peuvent entrer qu'à l'entracte.</p>
-<p><em>La tente d'entrée:</em></p>
+<p>La reprÃ©sentation commence Ã  l'heure. L'entrÃ©e des retardataires s'effectue lors de moments jugÃ©s opportuns par les placiers. Les personnes en fauteuil roulant qui arrivent en retard ne peuvent entrer qu'Ã  l'entracte.</p>
+<p><em>La tente d'entrÃ©e:</em></p>
 <p>
-La tente d'entrée ouvre 1 heure avec l'heure de la représentation et le Grand Chapiteau 1/2 heure avant
-* Des responsables de la billetterie sont à la disposition des spectateurs jusqu'à la fin de l'entracte.</p>
+La tente d'entrÃ©e ouvre 1 heure avec l'heure de la reprÃ©sentation et le Grand Chapiteau 1/2 heure avant
+* Des responsables de la billetterie sont Ã  la disposition des spectateurs jusqu'Ã  la fin de l'entracte.</p>
 <p><em>Boissons et nourriture</em></p>
 <p>
-Pop corn, bonbons et autres gourmandises sont à diposition pour achat dans la tente d'entrée. Ils sont acompagnés d'un éventail de choix de boissons. Bière et vins sont diponibles aux comptoirs pour nos visiteurs majeurs (une carte d'identité peut être demandée). Les paiements en espèces, par carte bancaire ou de crédit sont acceptés.</p>
+Pop corn, bonbons et autres gourmandises sont Ã  diposition pour achat dans la tente d'entrÃ©e. Ils sont acompagnÃ©s d'un Ã©ventail de choix de boissons. BiÃ¨re et vins sont diponibles aux comptoirs pour nos visiteurs majeurs (une carte d'identitÃ© peut Ãªtre demandÃ©e). Les paiements en espÃ¨ces, par carte bancaire ou de crÃ©dit sont acceptÃ©s.</p>
 <p><em>Divers</em></p>
 <p>
-La température est contrôlée à l'intérieur du Grand Chapiteau.
+La tempÃ©rature est contrÃ´lÃ©e Ã  l'intÃ©rieur du Grand Chapiteau.
 Il n'y a pas de vestiaire.
 Il est interdit de fumer dans le Grand Chapiteau.
-Les téléphones cellulaires doivent être fermés pour la durée de la représentation.
-Les caméras vidéo, appareils photo et magnétophones ne sont pas admis
-Des salles de bain pour personnes handicapées sont disponibles
-Les chiens guides sont autorisés, veuillez svp le signaler à l'achat des billets.</p>
+Les tÃ©lÃ©phones cellulaires doivent Ãªtre fermÃ©s pour la durÃ©e de la reprÃ©sentation.
+Les camÃ©ras vidÃ©o, appareils photo et magnÃ©tophones ne sont pas admis
+Des salles de bain pour personnes handicapÃ©es sont disponibles
+Les chiens guides sont autorisÃ©s, veuillez svp le signaler Ã  l'achat des billets.</p>
 
       
 <div class="urbangreymenu">
 
-<h3 class="headerbar">AMALUNA À SEATTLE, WA
-WASHINGTON, USA</h3>
+<h3 class="headerbar">AMALUNA À MONTRÉAL, CANADA</h3>
 <ul>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
+
+<% for (int i=0; i<spectacles.size();i++){%>
+   	 <!-- Une représentation spectacle -->
+   	<% if(spectacles.get(0).getNom() == spectacles.get(i).getListeRepresentations().get(i).getNomSpectacle()){%>
+   		<li><a href="representation_choisie.jsp"><%=spectacles.get(i).getListeRepresentations().get(i).getDate()%> / 
+   												 <%=spectacles.get(i).getListeRepresentations().get(i).getNomSpectacle()%> / Billets Restants:	
+   													<%=spectacles.get(i).getListeRepresentations().get(i).getBilletsDispo()%>
+   													 </a></li>
+   	
+       		<!-- fin d'une representation -->
+       			<%}%>
+   <%}%>
+
+
 
 </ul>
 
-<h3 class="headerbar">AMALUNA À EDMONTON, AB
-ALBERTA, CANADA</h3>
-<ul>
-<li><a href="representation_choisie.html" >SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>
-<li><a href="representation_choisie.html">SAMEDI, MAI 16, 2013</a></li>		
-</ul>
 
 </div></p>
 	</div>
@@ -168,7 +169,7 @@ ALBERTA, CANADA</h3>
 	<div id="templatemo_footer">
 	
 		<div class="col col_14">
-        	<h5>Différents Sites Utiles</h5>
+        	<h5>DiffÃ©rents Sites Utiles</h5>
             <ul class="footer_list">
                 <li><a href="http://www.templatemo.com/page/1">Free CSS Templates</a></li>
                 <li><a href="http://www.webdesignmo.com/blog">Web Design Resources</a></li>
@@ -204,7 +205,7 @@ ALBERTA, CANADA</h3>
               <input type="submit" name="Inscription" value=" Inscription" alt="Inscription" id="subscribe_button" title="Inscription" class="subscribe_button"  />
             </form>
             <div class="cleaner h30"></div>
-            Copyright © 2013 <a href="#">ÉTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+            Copyright Â© 2013 <a href="#">ÃTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
         </div>
         
     <div class="cleaner"></div>
