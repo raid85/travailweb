@@ -69,18 +69,14 @@ ddsmoothmenu.init({
         <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html" class="selected">Accueil</a></li>
-               
-                <li><a href="spectacles.html">Spectacles</a>
-                   
-                </li>
-                <li><a href="panier.html">Panier</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                     <li><a href="index.jsp" class="selected">Accueil</a></li>
+                <li><a href="spectacles.jsp">Spectacles</a>     </li>
+                <li><a href="panier.jsp">Panier</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
 				<li>
-				<! Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html
-				>
+				<!--  Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html--> 
 				
-				<form method="GET" action="http://www.google.com/search">
+				<form method="get" action="http://www.google.com/search">
 <input type="text" name="q" size="20" maxlength="255" />
 <input type="submit" name="btnG" VALUE="Rechercher" />
 <input type="hidden" name="domains" value="YOUR DOMAIN NAME" />

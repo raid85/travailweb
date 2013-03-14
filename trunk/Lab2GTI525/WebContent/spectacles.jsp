@@ -1,4 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page import="modele.BeanSpectacle"%>
+<%@ page import="java.util.ArrayList;"%>
+<%
+ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -47,18 +55,15 @@ ddsmoothmenu.init({
         <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html" >Accueil</a></li>
-               
-                <li><a href="spectacles.html" class="selected">Spectacles</a>
-                   
-                </li>
-                <li><a href="panier.html">Panier</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.jsp" class="selected">Accueil</a></li>
+                <li><a href="spectacles.jsp">Spectacles</a>     </li>
+                <li><a href="panier.jsp">Panier</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
 				<li>
-				<! Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html
-				>
+				<!--  Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html--> 
 				
-				<form method="GET" action="http://www.google.com/search">
+				
+<form method="get" action="http://www.google.com/search">
 <input type="text" name="q" size="20" maxlength="255" />
 <input type="submit" name="btnG" VALUE="Rechercher" />
 <input type="hidden" name="domains" value="YOUR DOMAIN NAME" />
@@ -74,105 +79,38 @@ ddsmoothmenu.init({
 <div id="templatemo_main">
 	
     <div id="content" class="float_l">
+   	
+   	
+   	 <% for (int i=0; i<spectacles.size();i++){%>
+   	 <!-- Un spectacle -->
    		<div class="post">
-            	<img src="images/templatemo_image_04b.jpg" alt="Image 01" />
-                <h2>Cirque du Soleil: Amaluna</h2>
-                <p>Ut sed lorem ac ante cursus auctor. Nam ut congue velit. Cras eget fermentum sem. Maecenas nec purus lorem, a sodales lectus. Etiam consequat nulla sit amet nisl volutpat ornare. Donec purus nulla, egestas ac porttitor et, pharetra nec felis. Donec lobortis fringilla blandit. Cum sociis natoque penatibus et magnis dis parturient montes, aliquam ac leo nascetur ridiculus mus.</p>
-                 <a href="representations.html" class="more">Voir</a>
+            	<img src=<%=spectacles.get(i).getPoster()%> alt=<%=spectacles.get(i).getNom()%> />
+                <h2><%=spectacles.get(i).getNom()%></h2>
+                <p><%=spectacles.get(i).getDescription()%></p>
+                 <a href="representations.jsp" class="more">Voir</a>
                  <div class="cleaner"></div>
-                 <div class="meta">
-                    <span class="admin">Donald</span><span class="date">March 24, 2048</span><span class="tag"><a href="#">Templates</a>, <a href="#">Freebies</a></span><span class="comment"><a href="#">139 comments</a></span>
-                    <div class="cleaner"></div>
-                </div>
-            	 <div class="cleaner"></div>
+              
        		</div>
-        	<div class="post">
-            	<img src="images/templatemo_image_04.jpg" alt="Image 02" />
-                <h2>PHILIPPE BOND</h2>
-                <p>Nullam interdum magna sapien. In at diam at metus auctor congue. Nullam aliquam nisi id ligula vehicula nec fringilla diam auctor. In gravida auctor dignissim. Vivamus porta lacus sed neque ultricies ultricies commodo enim tincidunt. Integer lorem quam, lacinia vitae aliquam in, mollis et ante. Duis a metus tortor, porttitor sodales sem. Aenean massa justo, sagittis et suscipit nec, tempor at mauris.</p>
-                <a href="representations.html" class="more">Voir</a>
-                <div class="cleaner"></div>
-                <div class="meta">
-                    <span class="admin">Steven</span><span class="date">March 17, 2048</span><span class="tag"><a href="#">Development</a>, <a href="#">Web Design</a></span><span class="comment"><a href="#">143 comments</a></span>
-                    
-                    <div class="cleaner"></div>
-                </div> 
-               	<div class="cleaner"></div>
-            </div>
-            <div class="post">
-                <img src="images/templatemo_image_05.jpg" alt="Image 03" /> 
-                <h2>METALLICA</h2>
-                  
-                <p>Integer pretium pretium diam. Integer sodales elit ac magna scelerisque rhoncus. Fusce sed justo eget purus commodo sagittis. Fusce id sapien nulla. Nullam accumsan, lectus ac auctor tincidunt, libero sapien aliquet turpis, id blandit orci magna id dolor. Vestibulum at metus nunc. Pellentesque consectetur convallis risus venenatis iaculis. Suspendisse potenti. Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow"><strong>XHTML</strong></a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow"><strong>CSS</strong></a>.</p>
-                <a href="representations.html" class="more">Voir</a>
-                <div class="cleaner"></div>
-                <div class="meta">
-                    <span class="admin">Alex</span><span class="date">March 13, 2048</span><span class="tag"><a href="#">3D</a>, <a href="#">Animations</a></span><span class="comment"><a href="#">190 comments</a></span>
-                    
-                    <div class="cleaner"></div>
-                </div> 
-                <div class="cleaner"></div>
-            </div>
+       		<!-- fin d'un spectacle -->
+   <%}%>
+	
+
+
             
              <div class="pagging">
                 <ul>
-                    <li><a href="spectacles.html" target="_parent">Précédent</a></li>
-                    <li><a href="spectacles.html" target="_parent">1</a></li>
-                    <li><a href="spectacles.html" target="_parent">2</a></li>
-                    <li><a href="spectacles.html" target="_parent">3</a></li>
-                    <li><a href="spectacles.html" target="_parent">4</a></li>
-                    <li><a href="spectacles.html" target="_parent">5</a></li>
-                    <li><a href="spectacles.html" target="_parent">6</a></li>
-                    <li><a href="spectacles.html" target="_parent">Suivant</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">PrÃ©cÃ©dent</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">1</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">2</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">3</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">4</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">5</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">6</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">Suivant</a></li>
                 </ul>
             </div>
     </div>
-    <div id="sidebar" class="float_r">
-    	<h5>Catégories</h5>
-        <ul class="templatemo_list">
-            <li><a href="#">Donec tempor dapibus</a></li>
-            <li><a href="#">Etiam tempus quam odio</a></li>
-        	<li><a href="#">Nullam ornare vulputate</a></li>
-            <li><a href="#">Pellentesque eget magna</a></li>
-            <li><a href="#">Vestibulum magna erat</a></li>
-        </ul>
-        <div class="cleaner h40"></div>
-    	<h5>Posts récents</h5>
-        <div class="rp_pp">
-            <a href="#">Curabitur sem mi, porta vel iaculis in vitae purus.</a>
-            <p>Feb 23, 2048 - 130 comments</p>
-            <div class="cleaner"></div>
-        </div>
-        <div class="rp_pp">
-            <a href="#">Enim enim lobortis felis, vel auctor nisi a metus.</a>
-            <p>Feb 16, 2048 - 154 comments</p>
-            <div class="cleaner"></div>
-        </div>
-        <div class="rp_pp">
-            <a href="#">Suspendisse quis tellus a enim suscipit id ac erat. </a>
-            <p>Feb 12, 2048 - 160 comments</p>
-            <div class="cleaner"></div>
-        </div>
-        
-        <div class="cleaner h40"></div>
-        
-        <h5>Posts populaires</h5>
-        <div class="rp_pp">
-            <a href="#">Id tempor odio faucibus et proin pharetra justo.</a>
-            <p>Feb 02, 2048 - 209 comments</p>
-            <div class="cleaner"></div>
-        </div>
-        <div class="rp_pp">
-            <a href="#">Pellentesque habitant morbi tristique senectus et.</a>
-            <p>June 03, 2048 - 197 comments</p>
-            <div class="cleaner"></div>
-        </div>
-        <div class="rp_pp">
-            <a href="#">Sed pretium odio vitae enim congue elementum.</a>
-            <p>August 20, 2048 - 234 comments</p>
-            <div class="cleaner"></div>
-        </div>
-    </div>
+    
     <div class="cleaner"></div>
 </div> <!-- END of main -->
 
@@ -180,7 +118,7 @@ ddsmoothmenu.init({
 	<div id="templatemo_footer">
 	
 		<div class="col col_14">
-        	<h5>Différents Sites Utiles</h5>
+        	<h5>DiffÃ©rents Sites Utiles</h5>
             <ul class="footer_list">
                 <li><a href="http://www.templatemo.com/page/1">Free CSS Templates</a></li>
                 <li><a href="http://www.webdesignmo.com/blog">Web Design Resources</a></li>
@@ -216,7 +154,7 @@ ddsmoothmenu.init({
               <input type="submit" name="Inscription" value=" Inscription" alt="Inscription" id="subscribe_button" title="Inscription" class="subscribe_button"  />
             </form>
             <div class="cleaner h30"></div>
-            Copyright © 2013 <a href="#">ÉTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+            Copyright Â© 2013 <a href="#">ÃTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
         </div>
         
     <div class="cleaner"></div>
