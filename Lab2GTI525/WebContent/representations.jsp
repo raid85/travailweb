@@ -5,6 +5,10 @@
 <%@ page import="java.util.ArrayList;"%>
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+int posSpectacleChoisi = Integer.valueOf(request.getParameter("spectacleChoisi").toString());
+
+;
+
 %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -83,7 +87,7 @@ ddsmoothmenu.init({
 
 <div id="templatemo_header_wrapper">
     <div id="templatemo_header">
-        <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
+        <div id="site_title"><a href="index.jsp" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
                      <li><a href="index.jsp" class="selected">Accueil</a></li>
@@ -108,46 +112,35 @@ ddsmoothmenu.init({
 
 <div id="templatemo_main">
 	<div class="col col_23">
-        <h2>ReprÃ©sentations</h2>
-        <img src=<%=spectacles.get(0).getPoster()%> alt=<%=spectacles.get(0).getNom()%> class="float_l img_float_l" />
-		  <p><em> Prix du spectacle: 159$</em></p>
-          <p><em> DurÃ©e du spectacle</em></p>
-<p>Le spectacle dure 2 h 30, incluant un entracte de 30 minutes.</p>
-<p><em>Retardataires</em></p>
-<p>La reprÃ©sentation commence Ã  l'heure. L'entrÃ©e des retardataires s'effectue lors de moments jugÃ©s opportuns par les placiers. Les personnes en fauteuil roulant qui arrivent en retard ne peuvent entrer qu'Ã  l'entracte.</p>
-<p><em>La tente d'entrÃ©e:</em></p>
-<p>
-La tente d'entrÃ©e ouvre 1 heure avec l'heure de la reprÃ©sentation et le Grand Chapiteau 1/2 heure avant
-* Des responsables de la billetterie sont Ã  la disposition des spectateurs jusqu'Ã  la fin de l'entracte.</p>
-<p><em>Boissons et nourriture</em></p>
-<p>
-Pop corn, bonbons et autres gourmandises sont Ã  diposition pour achat dans la tente d'entrÃ©e. Ils sont acompagnÃ©s d'un Ã©ventail de choix de boissons. BiÃ¨re et vins sont diponibles aux comptoirs pour nos visiteurs majeurs (une carte d'identitÃ© peut Ãªtre demandÃ©e). Les paiements en espÃ¨ces, par carte bancaire ou de crÃ©dit sont acceptÃ©s.</p>
-<p><em>Divers</em></p>
-<p>
-La tempÃ©rature est contrÃ´lÃ©e Ã  l'intÃ©rieur du Grand Chapiteau.
-Il n'y a pas de vestiaire.
-Il est interdit de fumer dans le Grand Chapiteau.
-Les tÃ©lÃ©phones cellulaires doivent Ãªtre fermÃ©s pour la durÃ©e de la reprÃ©sentation.
-Les camÃ©ras vidÃ©o, appareils photo et magnÃ©tophones ne sont pas admis
-Des salles de bain pour personnes handicapÃ©es sont disponibles
-Les chiens guides sont autorisÃ©s, veuillez svp le signaler Ã  l'achat des billets.</p>
+        <h2>Representations</h2>
+        <img src=<%=spectacles.get(posSpectacleChoisi).getPoster()%> alt=<%=spectacles.get(posSpectacleChoisi).getNom()%> class="float_l img_float_l" />
+		  <p><em> Prix du spectacle:</em></p><br> <% for (int i=0; i<spectacles.get(posSpectacleChoisi).getListeRepresentations().size();i++){%>
+		 <p> <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getPrix()%>$ Salle: 
+		  <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getSalle()%>
+		  </p>
+		     <%}%>
+          <p><em> Duree du spectacle</em></p>
+<p>Le spectacle dure environs 3 heures</p>
+<p><em>Description</em></p>
+<p><%=spectacles.get(posSpectacleChoisi).getDescription()%><br><br><br><br><br><br></p>
+
 
       
 <div class="urbangreymenu">
 
-<h3 class="headerbar">AMALUNA À MONTRÉAL, CANADA</h3>
+<h3 class="headerbar"><%=spectacles.get(posSpectacleChoisi).getNom()%> a Montréal, CANADA</h3>
 <ul>
 
-<% for (int i=0; i<spectacles.size();i++){%>
+<% if (spectacles.get(posSpectacleChoisi).getNom()!=null){%>
    	 <!-- Une représentation spectacle -->
-   	<% if(spectacles.get(0).getNom() == spectacles.get(i).getListeRepresentations().get(i).getNomSpectacle()){%>
-   		<li><a href="representation_choisie.jsp"><%=spectacles.get(i).getListeRepresentations().get(i).getDate()%> / 
-   												 <%=spectacles.get(i).getListeRepresentations().get(i).getNomSpectacle()%> / Billets Restants:	
-   													<%=spectacles.get(i).getListeRepresentations().get(i).getBilletsDispo()%>
+   	<% for (int i=0; i<spectacles.get(posSpectacleChoisi).getListeRepresentations().size();i++){%>
+   		<li><a href="representation_choisie.jsp"><%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getDate()%> / 
+   												 <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getNomSpectacle()%> / Billets Restants:	
+   													<%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getBilletsDispo()%>
    													 </a></li>
    	
        		<!-- fin d'une representation -->
-       			<%}%>
+       	 <%}%>		
    <%}%>
 
 
@@ -155,7 +148,7 @@ Les chiens guides sont autorisÃ©s, veuillez svp le signaler Ã  l'achat des b
 </ul>
 
 
-</div></p>
+</div>
 	</div>
       
     <div class="cleaner h40"></div>
@@ -169,7 +162,7 @@ Les chiens guides sont autorisÃ©s, veuillez svp le signaler Ã  l'achat des b
 	<div id="templatemo_footer">
 	
 		<div class="col col_14">
-        	<h5>DiffÃ©rents Sites Utiles</h5>
+        	<h5>Differents Sites Utiles</h5>
             <ul class="footer_list">
                 <li><a href="http://www.templatemo.com/page/1">Free CSS Templates</a></li>
                 <li><a href="http://www.webdesignmo.com/blog">Web Design Resources</a></li>

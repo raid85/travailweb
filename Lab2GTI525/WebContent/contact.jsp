@@ -45,7 +45,7 @@ ddsmoothmenu.init({
 
 <div id="templatemo_header_wrapper">
     <div id="templatemo_header">
-        <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
+        <div id="site_title"><a href="index.jsp" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
                  <li><a href="index.jsp" class="selected">Accueil</a></li>

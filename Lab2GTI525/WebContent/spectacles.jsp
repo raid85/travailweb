@@ -52,7 +52,7 @@ ddsmoothmenu.init({
 <body id="home">
 <div id="templatemo_header_wrapper">
     <div id="templatemo_header">
-        <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
+        <div id="site_title"><a href="index.jsp" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
                 <li><a href="index.jsp" class="selected">Accueil</a></li>
@@ -81,13 +81,20 @@ ddsmoothmenu.init({
     <div id="content" class="float_l">
    	
    	
-   	 <% for (int i=0; i<spectacles.size();i++){%>
+   	 <% for (int i=0; i<spectacles.size();i++){;%>
    	 <!-- Un spectacle -->
    		<div class="post">
             	<img src=<%=spectacles.get(i).getPoster()%> alt=<%=spectacles.get(i).getNom()%> />
                 <h2><%=spectacles.get(i).getNom()%></h2>
                 <p><%=spectacles.get(i).getDescription()%></p>
-                 <a href="representations.jsp" class="more">Voir</a>
+                
+                
+				<form action="./" method = "post"> 	
+				<input type="submit" class="button_cmd" value="Voir"/>
+				<input type="hidden" name="action"  value="afficherRepresentations" />
+				<input type="hidden" name="spectacleChoisi"  value=<%=i%> />
+				</form>
+
                  <div class="cleaner"></div>
               
        		</div>
