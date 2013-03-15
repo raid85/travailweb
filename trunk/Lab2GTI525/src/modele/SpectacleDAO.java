@@ -48,7 +48,7 @@ public class SpectacleDAO {
 		beanSpectacle.setNom("Georges St-Pierre");
 		beanSpectacle.setThumbnail("./images/templatemo_image_03c.jpg");
 		beanSpectacle.setPoster("./images/templatemo_image_03.jpg");
-		beanSpectacle.setDescription("Combat de Georges St-Pierre vs BJ Penn. À ne pas manquer");	
+		beanSpectacle.setDescription("Combat de Georges St-Pierre vs BJ Penn. À ne pas manquer. Lequel survivera?");	
 		beanSpectacle.setListeRepresentations(listeRepresentations);
 		
 		//on ajoute le pbean à la liste	
@@ -65,7 +65,7 @@ public class SpectacleDAO {
 		beanRepresentation.setId(1);
 		beanRepresentation.setBilletsDispo(234);
 		beanRepresentation.setNomSpectacle("Cirque du soleil: Amaluna");
-		beanRepresentation.setPrix(200);
+		beanRepresentation.setPrix(190);
 		beanRepresentation.setSalle("Ti-Guy Clément");
 		beanRepresentation.setDate("12 Mai 2013");
 		
@@ -80,7 +80,7 @@ public class SpectacleDAO {
 		beanRepresentation.setBilletsDispo(234);
 		beanRepresentation.setNomSpectacle("Cirque du soleil: Amaluna");
 		beanRepresentation.setPrix(200);
-		beanRepresentation.setSalle("Ti-Guy Clément");
+		beanRepresentation.setSalle("Super Man");
 		beanRepresentation.setDate("14 MAI 2013");
 		
 		//on ajoute le bean à la liste	
@@ -93,7 +93,7 @@ public class SpectacleDAO {
 		beanSpectacle.setNom("Amaluna");
 		beanSpectacle.setThumbnail("./images/templatemo_image_04c.jpg");
 		beanSpectacle.setPoster("./images/templatemo_image_04b.jpg");
-		beanSpectacle.setDescription("On aime le cirque beaucoup quand ya des animaux. Mais c'est pas gentil pour les animaux");	
+		beanSpectacle.setDescription("On aime le cirque quand il y a des animaux. Mais ce n'est pas gentil pour les animaux, alors ce seront des humains qui remplaceront les singes.");	
 		beanSpectacle.setListeRepresentations(listeRepresentations);
 		
 		//on ajoute le bean à la liste	
