@@ -1,4 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page import="modele.BeanSpectacle"%>
+<%@ page import="java.util.ArrayList;"%>
+<%
+ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+int nombreBillets = Integer.valueOf(request.getParameter("nbBillets").toString());
+int posSpec = Integer.valueOf(request.getParameter("spec").toString());
+int posRep = Integer.valueOf(request.getParameter("rep").toString());
+double sousTotal = nombreBillets * spectacles.get(posSpec).getListeRepresentations().get(posRep).getPrix() ;
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,7 +58,7 @@ ddsmoothmenu.init({
 <script type="text/javascript" language="JavaScript">
 function AskAndSubmit(t)
 {
-  var answer = confirm("Vous étes sûr de vouloir acheter tous ces billets?");
+  var answer = confirm("Vous Ã©tes sÃ»r de vouloir acheter tous ces billets?");
   if (answer)
   {
     t.form.submit();
@@ -96,30 +110,28 @@ function AskAndSubmit(t)
 		<h2>Panier</h2>
 	<div class="urbangreymenu">
 
-<h3 class="headerbar">CIRQUE DU SOLEIL - AMALUNA À SEATTLE, WA
-WASHINGTON, SAMEDI, MAI 16, 2013 - <em><b>8</b> Billets </em><input type="submit" name="btnMoins" VALUE="-" />
-<input type="submit" name="btnPlus" VALUE="+" /></h3>
 
+<h3 class="headerbar"><%=spectacles.get(posSpec).getNom()%> / <%=spectacles.get(posSpec).getListeRepresentations().get(posRep).getDate()%> - Salle: 
+<%=spectacles.get(posSpec).getListeRepresentations().get(posRep).getSalle()%>
+ - <em><b><%=nombreBillets%></b> Billets</em> &nbsp&nbsp<input type="submit" name="btnMoins" value="-" />
+<input type="submit" name="btnPlus" value="+" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Total: <%=sousTotal%>$</h3>
 
-<h3 class="headerbar">ST-PIERRE vs PENN, AB
-ALBERTA, CANADA, DIMANCHE, MAI 17, 2013 - <em><b>12</b> Billets</em><input type="submit" name="btnMoins" VALUE="-" />
-<input type="submit" name="btnPlus" VALUE="+" /></h3>
 <div class="cleaner h10"></div>
-<form> <div class="float_r"><a href="payement.html"><input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/></a> </div></form>
+<form> <div class="float_r"><a href="payement.jsp"><input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/></a> </div></form>
 
 </div>
         <p></p>
         <div class="cleaner"></div>
         <div class="pagging">
             <ul>
-                <li><a href="panier.html" target="_parent">Précédent</a></li>
-                <li><a href="panier.html" target="_parent">1</a></li>
-                <li><a href="panier.html" target="_parent">2</a></li>
-                <li><a href="panier.html" target="_parent">3</a></li>
-                <li><a href="panier.html" target="_parent">4</a></li>
-                <li><a href="panier.html" target="_parent">5</a></li>
-                <li><a href="panier.html" target="_parent">6</a></li>
-                <li><a href="panier.html" target="_parent">Suivant</a></li>
+                <li><a href="panier.jsp" target="_parent">PrÃ©cÃ©dent</a></li>
+                <li><a href="panier.jsp" target="_parent">1</a></li>
+                <li><a href="panier.jsp" target="_parent">2</a></li>
+                <li><a href="panier.jsp" target="_parent">3</a></li>
+                <li><a href="panier.jsp" target="_parent">4</a></li>
+                <li><a href="panier.jsp" target="_parent">5</a></li>
+                <li><a href="panier.jsp" target="_parent">6</a></li>
+                <li><a href="panier.jsp" target="_parent">Suivant</a></li>
             </ul>
         </div> 
     
@@ -130,7 +142,7 @@ ALBERTA, CANADA, DIMANCHE, MAI 17, 2013 - <em><b>12</b> Billets</em><input type=
 	<div id="templatemo_footer">
 	
 		<div class="col col_14">
-        	<h5>Différents Sites Utiles</h5>
+        	<h5>DiffÃ©rents Sites Utiles</h5>
             <ul class="footer_list">
                 <li><a href="http://www.templatemo.com/page/1">Free CSS Templates</a></li>
                 <li><a href="http://www.webdesignmo.com/blog">Web Design Resources</a></li>
@@ -165,7 +177,7 @@ ALBERTA, CANADA, DIMANCHE, MAI 17, 2013 - <em><b>12</b> Billets</em><input type=
               <input type="submit" name="Inscription" value=" Inscription" alt="Inscription" id="subscribe_button" title="Inscription" class="subscribe_button"  />
             </form>
             <div class="cleaner h30"></div>
-            Copyright © 2013 <a href="#">ÉTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+            Copyright Â© 2013 <a href="#">ÃTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
         </div>
         
     <div class="cleaner"></div>

@@ -8,7 +8,6 @@
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 int posSpectacleChoisi = Integer.valueOf(request.getParameter("spectacleChoisi").toString());
 int posRepChoisi = Integer.valueOf(request.getParameter("representationChoisi").toString());
-;
 
 %>
 
@@ -31,6 +30,8 @@ function clearText(field)
 <script type="text/javascript" language="JavaScript">
 function AskAndSubmit(t)
 {
+	
+	
   var answer = confirm("Vous étes sûr de vouloir réserver XXX billets?");
   if (answer)
   {
@@ -58,6 +59,28 @@ function AskAndSubmit(t)
        //http://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
 	   //-->
     </SCRIPT>
+
+    
+ <script Language="JavaScript">
+<!-- 
+function champVideValidator()
+{
+	//Code provenant de http://stackoverflow.com/questions/3502354/textbox-empty-check-using-javascript
+// Check the value of the element named text_name from the form named text_form
+if (formReservation.nbBillets.value == "")
+{
+  // If null display and alert box
+   alert("Vous devez entrer un nombre de billets a acheter");
+  // Place the cursor on the field for revision
+   formReservation.nbBillets.focus();
+  // return false to stop further processing
+   return (false);
+}
+// If text_name is not null continue processing
+return (true);
+}
+-->
+</SCRIPT>
 <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -131,10 +154,14 @@ ddsmoothmenu.init({
 			<p></p>
             <p>Entrez le nombre de billets désirés et appuyez sur le bouton continuer</p>
 			<p></p>
-			 <INPUT id="txtChar" onkeypress="return isNumberKey(event)" 
-           type="text" name="txtChar">
-		   <a href="panier.jsp"><input type="submit" name="Reserver" value=" Réserver " alt="Réserver" id="reserver_button" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="reserver_button" onclick="AskAndSubmit(this)" /></a>
-		 
+			<form name="formReservation" action="./" method = "post" onsubmit="return champVideValidator()">
+			<input id="txtChar" onkeypress="return isNumberKey(event)" type="text" name="nbBillets"/>
+		    <input type="hidden" name="rep" value=<%=posRepChoisi%> />
+			<input type="hidden" name="spec"  value=<%=posSpectacleChoisi%> />
+		    <input type="submit" name="btnReserver" value=" Réserver " alt="Réserver" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="button_cmd"/>
+		 	<input type="hidden" name="action"  value="ajouterDansPanier" />
+			
+			</form>		
 
 		</div>
 	</div>    
