@@ -97,7 +97,7 @@ n'est plus aussi attrayant.
 http://cssgradientbutton.com/
 */
 .button_cmd{
-border:1px solid #34740e; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; text-align: center; color: #FFFFFF; background-color: #4ba614;
+ border:1px solid #34740e; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; text-align: center; color: #FFFFFF; background-color: #4ba614;
  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4ba614), color-stop(100%, #008c00));
  background-image: -webkit-linear-gradient(top, #4ba614, #008c00);
  background-image: -moz-linear-gradient(top, #4ba614, #008c00);
@@ -115,6 +115,28 @@ border:1px solid #34740e; -webkit-border-radius: 3px; -moz-border-radius: 3px;bo
  background-image: -o-linear-gradient(top, #36780f, #005900);
  background-image: linear-gradient(top, #36780f, #005900);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#36780f, endColorstr=#005900);
 }
+
+
+.button_rep{
+border:1px solid #b7b7b7; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-family:arial, helvetica, sans-serif; padding: 10px 10px 10px 10px; text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; text-align: center; color: #FFFFFF; background-color: #d3d3d3;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#d3d3d3), to(#707070));
+ background-image: -webkit-linear-gradient(top, #d3d3d3, #707070);
+ background-image: -moz-linear-gradient(top, #d3d3d3, #707070);
+ background-image: -ms-linear-gradient(top, #d3d3d3, #707070);
+ background-image: -o-linear-gradient(top, #d3d3d3, #707070);
+ background-image: linear-gradient(to bottom, #d3d3d3, #707070);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#d3d3d3, endColorstr=#707070);
+}
+
+.button_rep:hover{
+ border:1px solid #a0a0a0; background-color: #bababa;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#bababa), top(#575757));
+ background-image: -webkit-linear-gradient(top, #bababa, #575757);
+ background-image: -moz-linear-gradient(top, #bababa, #575757);
+ background-image: -ms-linear-gradient(top, #bababa, #575757);
+ background-image: -o-linear-gradient(top, #bababa, #575757);
+ background-image: linear-gradient(to bottom, #bababa, #575757);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#bababa, endColorstr=#575757);
+}
+
 
 .float_l { 
 	float: left; 
@@ -510,7 +532,7 @@ margin:0 auto;
 }
 #templatemo_list 
 .urbangreymenu{
-width: 190px; /*width of menu*/
+width: 350px; /*width of menu*/
 }
 
 .urbangreymenu .headerbar{
@@ -726,7 +748,7 @@ background: black;
 .col { float: left; margin-right: 30px }
 .col_12 { width: 450px }
 .col_13 { width: 300px; font-size: 15px }
-.col_23 { width: 630px }
+.col_23 { width: 600px }
 .col_14 { width: 217px } 
 .col_24 { width: 465px }
 .col_15 { width: 180px; margin-right: 15px }

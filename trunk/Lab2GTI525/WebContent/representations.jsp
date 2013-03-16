@@ -6,7 +6,6 @@
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 int posSpectacleChoisi = Integer.valueOf(request.getParameter("spectacleChoisi").toString());
-
 ;
 
 %>
@@ -112,9 +111,9 @@ ddsmoothmenu.init({
 
 <div id="templatemo_main">
 	<div class="col col_23">
-        <h2>Representations</h2>
+        <h2>Representation(s): <%=spectacles.get(posSpectacleChoisi).getNom()%></h2>
         <img src=<%=spectacles.get(posSpectacleChoisi).getPoster()%> alt=<%=spectacles.get(posSpectacleChoisi).getNom()%> class="float_l img_float_l" />
-		  <p><em> Prix du spectacle:</em></p><br> <% for (int i=0; i<spectacles.get(posSpectacleChoisi).getListeRepresentations().size();i++){%>
+		  <p><em> Prix du spectacle:</em></p><% for (int i=0; i<spectacles.get(posSpectacleChoisi).getListeRepresentations().size();i++){%>
 		 <p> <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getPrix()%>$ Salle: 
 		  <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getSalle()%>
 		  </p>
@@ -134,15 +133,19 @@ ddsmoothmenu.init({
 <% if (spectacles.get(posSpectacleChoisi).getNom()!=null){%>
    	 <!-- Une représentation spectacle -->
    	<% for (int i=0; i<spectacles.get(posSpectacleChoisi).getListeRepresentations().size();i++){%>
-   		<li><a href="representation_choisie.jsp"><%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getDate()%> / 
-   												 <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getNomSpectacle()%> / Billets Restants:	
-   													<%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getBilletsDispo()%>
-   													 </a></li>
+   		<li>
+   												
+   		<form action="./" method = "post">
+   				<input type="submit" class="button_rep" style="width:600px; text-align: left;" value="<%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getDate()%> / Salle: <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getSalle()%> / Billets Restants: <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(i).getBilletsDispo()%>"/>
+				<input type="hidden" name="action"  value="afficherRepChoisi" />
+				<input type="hidden" name="spectacleChoisi"  value=<%=posSpectacleChoisi%> />
+				<input type="hidden" name="representationChoisi"  value=<%=i%> />
+			</form>					
+   														 </li>
    	
        		<!-- fin d'une representation -->
        	 <%}%>		
    <%}%>
-
 
 
 </ul>
@@ -150,12 +153,7 @@ ddsmoothmenu.init({
 
 </div>
 	</div>
-      
-    <div class="cleaner h40"></div>
-        
-   
-    
-    <div class="cleaner"></div>
+	<div class="cleaner"></div>
 </div> <!-- END of main -->
 
 <div id="templatemo_footer_wrapper">

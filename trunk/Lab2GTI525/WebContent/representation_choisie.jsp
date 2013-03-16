@@ -1,4 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page import="modele.BeanSpectacle"%>
+<%@ page import="java.util.ArrayList;"%>
+<%
+ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+int posSpectacleChoisi = Integer.valueOf(request.getParameter("spectacleChoisi").toString());
+int posRepChoisi = Integer.valueOf(request.getParameter("representationChoisi").toString());
+;
+
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -75,16 +88,16 @@ ddsmoothmenu.init({
 
 <div id="templatemo_header_wrapper">
     <div id="templatemo_header">
-        <div id="site_title"><a href="index.jsp" class="selected">BILLETS<span>ONLINE</span></a></div>
+        <div id="site_title"><a href="index.html" class="selected">BILLETS<span>ONLINE</span></a></div>
         <div id="templatemo_menu" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.jsp" class="selected">Accueil</a></li>
+            <li><a href="index.jsp" class="selected">Accueil</a></li>
                 <li><a href="spectacles.jsp">Spectacles</a>     </li>
                 <li><a href="panier.jsp">Panier</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
 				<li>
 				<!--  Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html--> 
-				
+			
 				<form method="get" action="http://www.google.com/search">
 <input type="text" name="q" size="20" maxlength="255" />
 <input type="submit" name="btnG" VALUE="Rechercher" />
@@ -100,41 +113,27 @@ ddsmoothmenu.init({
 <div id="templatemo_main_top"></div>
 <div id="templatemo_main">
 	<div class="col col_23">
-        <h2>Représentation: SAMEDI, MAI 16, 2013</h2>
-        <img src="images/templatemo_image_04b.jpg" alt="Amaluna" class="float_l img_float_l" />
-                <p><em> Durée du spectacle</em></p>
-<p>Le spectacle dure 2 h 30, incluant un entracte de 30 minutes.</p>
-<p><em>Retardataires</em></p>
-<p>La représentation commence à l'heure. L'entrée des retardataires s'effectue lors de moments jugés opportuns par les placiers. Les personnes en fauteuil roulant qui arrivent en retard ne peuvent entrer qu'à l'entracte.</p>
-<p><em>La tente d'entrée:</em></p>
-<p>
-La tente d'entrée ouvre 1 heure avec l'heure de la représentation et le Grand Chapiteau 1/2 heure avant
-* Des responsables de la billetterie sont à la disposition des spectateurs jusqu'à la fin de l'entracte.</p>
-<p><em>Boissons et nourriture</em></p>
-<p>
-Pop corn, bonbons et autres gourmandises sont à diposition pour achat dans la tente d'entrée. Ils sont acompagnés d'un éventail de choix de boissons. Bière et vins sont diponibles aux comptoirs pour nos visiteurs majeurs (une carte d'identité peut être demandée). Les paiements en espèces, par carte bancaire ou de crédit sont acceptés.</p>
-<p><em>Divers</em></p>
-<p>
-La température est contrôlée à l'intérieur du Grand Chapiteau.
-Il n'y a pas de vestiaire.
-Il est interdit de fumer dans le Grand Chapiteau.
-Les téléphones cellulaires doivent être fermés pour la durée de la représentation.
-Les caméras vidéo, appareils photo et magnétophones ne sont pas admis
-Des salles de bain pour personnes handicapées sont disponibles
-Les chiens guides sont autorisés, veuillez svp le signaler à l'achat des billets.</p>
-	</div>
+        <h2>Représentation: <%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(posRepChoisi).getDate()%></h2>
+        <img src=<%=spectacles.get(posSpectacleChoisi).getPoster()%> alt=<%=spectacles.get(posSpectacleChoisi).getNom()%> class="float_l img_float_l" />
+             
+ <p><em> Duree du spectacle</em></p>
+<p>Le spectacle dure environs 3 heures</p>
+<p><em>Description</em></p>
+<p><%=spectacles.get(posSpectacleChoisi).getDescription()%><br><br><br><br><br><br></p>
+
+</div>
     <div class="col col_13 no_margin_right">
     	<h3>Acheter des billets</h3>
         <div class="testimonial">
-            <p>Il restent seulement: <cite><b>12</b></cite>&nbsp billets disponibles pour cette représentation </p>
+            <p>Il restent seulement: <cite><b><%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(posRepChoisi).getBilletsDispo()%></b></cite>&nbsp billets disponibles pour cette représentation </p>
             <div class="cleaner"></div>
-            <cite><b>159$</b> chaque</cite>
+            <cite><b><%=spectacles.get(posSpectacleChoisi).getListeRepresentations().get(posRepChoisi).getPrix()%>$</b> chaque</cite>
 			<p></p>
-            <p>Choisisez le nombre de billets désirés et appuyez sur le bouton continuer</p>
+            <p>Entrez le nombre de billets désirés et appuyez sur le bouton continuer</p>
 			<p></p>
 			 <INPUT id="txtChar" onkeypress="return isNumberKey(event)" 
            type="text" name="txtChar">
-		   <a href="panier.html"><input type="submit" name="Reserver" value=" Réserver " alt="Réserver" id="reserver_button" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="reserver_button" onclick="AskAndSubmit(this)" /></a>
+		   <a href="panier.jsp"><input type="submit" name="Reserver" value=" Réserver " alt="Réserver" id="reserver_button" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="reserver_button" onclick="AskAndSubmit(this)" /></a>
 		 
 
 		</div>
