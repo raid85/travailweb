@@ -6,7 +6,7 @@
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 int posSpectacleChoisi = Integer.valueOf(request.getParameter("spectacleChoisi").toString());
-;
+
 
 %>
 

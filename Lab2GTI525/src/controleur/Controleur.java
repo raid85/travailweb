@@ -72,7 +72,26 @@ public class Controleur {
 			//System.out.println(((BeanSpectacle)request.getSession().getAttribute("chosenPestacle")).getDescription());			
 			
 			
-			return "representation_choisie.jsp";}else
+			return "representation_choisie.jsp";}
+		
+		else if (request.getParameter("action").equals("ajouterDansPanier")){
+
+
+			
+			
+			DelegateSpectacles myDelegate = new DelegateSpectacles();
+			System.out.println(myDelegate.getSpectacles().get(0).getNom());
+			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
+			
+			
+			
+			System.out.println("TRACE Controleur: Btn Reserver clicked");
+			
+			//System.out.println("TRACE Controleur:nbBillets =" + nbBilletsReserve);
+			
+			
+			
+			return "panier.jsp";}else
 					
 				return "erreur.jsp";
 			
