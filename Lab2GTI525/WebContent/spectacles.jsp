@@ -106,7 +106,7 @@ ddsmoothmenu.init({
             
              <div class="pagging">
                 <ul>
-                    <li><a href="spectacles.jsp" target="_parent">PrÃ©cÃ©dent</a></li>
+                    <li><a href="spectacles.jsp" target="_parent">Precedent</a></li>
                     <li><a href="spectacles.jsp" target="_parent">1</a></li>
                     <li><a href="spectacles.jsp" target="_parent">2</a></li>
                     <li><a href="spectacles.jsp" target="_parent">3</a></li>

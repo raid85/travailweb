@@ -31,7 +31,7 @@ public class SpectacleDAO {
 		
 		//Création du Bean
 		beanRepresentation.setId(2);
-		beanRepresentation.setBilletsDispo(234);
+		beanRepresentation.setBilletsDispo(162);
 		beanRepresentation.setNomSpectacle("Georges St-Pierre");
 		beanRepresentation.setPrix(100);
 		beanRepresentation.setSalle("Bruno Payette Est");
@@ -77,7 +77,7 @@ public class SpectacleDAO {
 		//Création du Bean
 		//Representation 2
 		beanRepresentation.setId(2);
-		beanRepresentation.setBilletsDispo(234);
+		beanRepresentation.setBilletsDispo(18);
 		beanRepresentation.setNomSpectacle("Cirque du soleil: Amaluna");
 		beanRepresentation.setPrix(200);
 		beanRepresentation.setSalle("Super Man");
@@ -90,7 +90,7 @@ public class SpectacleDAO {
 		beanSpectacle = new BeanSpectacle();
 		//Création du Bean
 		beanSpectacle.setId(1);
-		beanSpectacle.setNom("Amaluna");
+		beanSpectacle.setNom("Cirque du soleil: Amaluna");
 		beanSpectacle.setThumbnail("./images/templatemo_image_04c.jpg");
 		beanSpectacle.setPoster("./images/templatemo_image_04b.jpg");
 		beanSpectacle.setDescription("On aime le cirque quand il y a des animaux. Mais ce n'est pas gentil pour les animaux, alors ce seront des humains qui remplaceront les singes.");	
