@@ -3,11 +3,13 @@
 
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <%@ page import="modele.BeanSpectacle"%>
+<%@ page import="modele.Panier"%>
 <%@ page import="java.util.ArrayList;"%>
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 int posSpectacleChoisi = Integer.valueOf(request.getParameter("spectacleChoisi").toString());
 int posRepChoisi = Integer.valueOf(request.getParameter("representationChoisi").toString());
+Panier panier  = (Panier)request.getSession().getAttribute("panier");
 
 %>
 
@@ -159,6 +161,7 @@ ddsmoothmenu.init({
 		    <input type="hidden" name="rep" value=<%=posRepChoisi%> />
 			<input type="hidden" name="spec"  value=<%=posSpectacleChoisi%> />
 		    <input type="submit" name="btnReserver" value=" Réserver " alt="Réserver" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="button_cmd"/>
+		 	<input type="hidden" name="estVide"  value=<%=panier%> />
 		 	<input type="hidden" name="action"  value="ajouterDansPanier" />
 			
 			</form>		
