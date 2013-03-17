@@ -57,10 +57,12 @@ ddsmoothmenu.init({
 <script type="text/javascript" language="JavaScript">
 function AskAndSubmit(t)
 {
-  var answer = confirm("Vous Ã©tes sÃ»r de vouloir acheter tous ces billets?");
+  var answer = confirm("Vous etes surs de vouloir acheter tous ces billets?");
   if (answer)
   {
     t.form.submit();
+  }else{
+	  return false;
   }
 }
 //Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525
@@ -120,7 +122,11 @@ function AskAndSubmit(t)
   <%}%>
 
 <div class="cleaner h10"></div>
-<form> <div class="float_r"><a href="payement.jsp"><input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/></a> </div></form>
+<form> <div class="float_r">
+<input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/> 
+<input type="hidden" name="action"  value="afficherPayement" />
+</div>
+</form>
 
 </div>
         <p></p>

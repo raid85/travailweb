@@ -16,10 +16,8 @@ import javax.servlet.http.*;
 public class FrontControlerServlet  extends HttpServlet {
 
 	/**
-	 * HttpServlet implémente l'interface serializable, puisqu'il est possible de sérialiser, soit, de garder en persistance,
-	 * l'état d'un servlet, par exemple pour conserver toutes les sessions à l'arrêt, et tout reprendre au démarrage. Afin de
-	 * faire le lien entre une classe sérialisée et son implémentation, on met le champ serialVersionUID. Ce n'est vraiment
-	 * pas nécessaire, mais sans ça, le compilateur va faire un avertissement. Alors bon, il est toujours mieux de le fixer.
+	 On serialise le servlet pour pouvoir revenir dans une session une fois que celle-ci
+	 a ete fermee. 
 	 */
 	private static final long serialVersionUID = -8956587436876458937L;
 	
@@ -35,11 +33,8 @@ public class FrontControlerServlet  extends HttpServlet {
 	}
 	
 	/**
-	 * Cette méthode reçoit toutes les requêtes du servlet, et fais les redirections nécessaires
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
+	 * Cette méthode reçoit des requêtes du servlet, ensuite redirige
+	
 	 */
 	protected void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Redirige au contrôleur de messages. Dans un Front Controller normal, il pourrait y avoir plusieurs servlets!
@@ -49,15 +44,10 @@ public class FrontControlerServlet  extends HttpServlet {
 	}
 	
 	/**
-	 * Faits la redirection vers les pages demandées par le sous contrôlleur
-	 * @param request
-	 * @param response
-	 * @param page Le chemin et le nom de la page à afficher
-	 * @throws ServletException
-	 * @throws IOException
-	 */
+	 * redirige vers les pages demand/es dans Controleur.java
+	*/
 	protected void redirect(HttpServletRequest request, HttpServletResponse response, String page) throws ServletException, IOException {
-		//Redirige vers la page, fournie par le sous-contrôleur
+		//Redirige vers la page que Controleur.java va sp/cifier avec la commande return nomPageDest.jsp;
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"+page);
 		dispatcher.forward(request, response);
 

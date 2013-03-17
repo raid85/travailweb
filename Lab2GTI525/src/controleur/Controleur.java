@@ -2,7 +2,7 @@
  * Nom de fichier: Controleur.java
  * Créé par: Alexandru Marinescu
  * Date de création: 01-03-2012
- * Modifications:
+ * Modifications: Sans arret et tous les jours depuis creation
  */
 package controleur;
 
@@ -21,6 +21,7 @@ public class Controleur {
 
 	private static final long serialVersionUID = 2579846315782156987L;
 	
+	//methode qui gère l'application web 
 	public String doHandle(HttpServletRequest request, HttpServletResponse response){		
 		
 		
@@ -33,6 +34,7 @@ public class Controleur {
 			}
 		
 		//si on reçoit dans la requête chercheSpectacles
+		//Vers page spectacles disponibles
 		else if (request.getParameter("action").equals("chercheSpectacles")){
 
 			
@@ -46,6 +48,7 @@ public class Controleur {
 				//on redirige jsp populé
 				return "spectacles.jsp";
 				}
+		//Vers page de laffichage des representations
 		else if (request.getParameter("action").equals("afficherRepresentations")){
 
 			
@@ -62,9 +65,10 @@ public class Controleur {
 			
 			return "representations.jsp";}
 		
+		//Vers page choisir nbBillets
 		else if (request.getParameter("action").equals("afficherRepChoisi")){
 
-			BeanRepresentation repDummy = new BeanRepresentation();
+			//BeanRepresentation repDummy = new BeanRepresentation();
 			
 			DelegateSpectacles myDelegate = new DelegateSpectacles();
 			System.out.println(myDelegate.getSpectacles().get(0).getNom());
@@ -72,7 +76,7 @@ public class Controleur {
 			
 			//On initialise le panier vide ici car il sera utile au niveau de representation_choisie.jsp		
 			//
-			Panier panier = new Panier(repDummy,1);
+			//Panier panier = new Panier(repDummy,1);
 			
 			
 			System.out.println("TRACE Controleur: Btn voirRepChoisi clicked");
@@ -82,10 +86,11 @@ public class Controleur {
 			
 			return "representation_choisie.jsp";}
 		
+		//Vers page panier
 		else if (request.getParameter("action").equals("ajouterDansPanier")){
 
-			Panier panierActuel = (Panier)request.getAttribute("panier");
 			
+			boolean bool = true;//variable pour des tests
 			
 			//nb billets capte du jsp
 			String nbBilletsReserve = request.getParameter("nbBillets");
@@ -103,7 +108,7 @@ public class Controleur {
 			
 		
 			//Si le panier est vide(premiere fois qu'on y ajoute quelquechose)
-			if(panierActuel.estVide()){
+			if(bool){
 			
 				System.out.println("***Se rend dans est vide*******************");
 
@@ -118,7 +123,8 @@ public class Controleur {
 			else{
 				
 				System.out.println("***Se rend dans est pas vide*******************");
-
+				
+				
 				Panier newPanier=(Panier)request.getAttribute("panier");
 				newPanier.ajouterItem(myDelegate.getSpectacles().get(posSpectacle).getListeRepresentations().get(posRepresentation),Integer.valueOf(nbBilletsReserve.toString()));
 	
@@ -128,19 +134,22 @@ public class Controleur {
 		
 			//on set l'atribut spectacles pour la session
 			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
-			
-			
-			
-						
+									
 			System.out.println("TRACE Controleur: Btn Reserver clicked");
+					
+			return "panier.jsp";}
+		
+		//Vers page payement
+		else if (request.getParameter("action").equals("afficherPayement")){
+
+			System.out.println("TRACE Controleur: Btn afficherPayement clicked");
 			
-			
-			
-			
-			return "panier.jsp";}else
+			return "payement.jsp";}else
 					
 				return "erreur.jsp";
 			
 		
 }
+//Fin doHandle	
+	
 }
