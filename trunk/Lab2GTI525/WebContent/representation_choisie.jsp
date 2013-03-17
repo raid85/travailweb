@@ -161,7 +161,7 @@ ddsmoothmenu.init({
 		    <input type="hidden" name="rep" value=<%=posRepChoisi%> />
 			<input type="hidden" name="spec"  value=<%=posSpectacleChoisi%> />
 		    <input type="submit" name="btnReserver" value=" Réserver " alt="Réserver" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="button_cmd"/>
-		 	<input type="hidden" name="estVide"  value=<%=panier%> />
+		 	<input type="hidden" name="panier"  value=<%=panier%> />
 		 	<input type="hidden" name="action"  value="ajouterDansPanier" />
 			
 			</form>		

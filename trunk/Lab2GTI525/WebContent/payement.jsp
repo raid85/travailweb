@@ -21,6 +21,8 @@ function AskAndSubmit(t)
   if (answer)
   {
     t.form.submit();
+  }else{
+	  return false;
   }
 }
 //Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525
@@ -93,106 +95,53 @@ ddsmoothmenu.init({
         <div id="contact_form">
            <form method="post" name="contact" action="#">
                         
-                        <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" />
+                        <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" value="Bernard Lagrais"/>
                         <div class="cleaner h10"></div>
-                        <label for="email">Numéro de carte de crédit</label> <input type="text" id="nrcredit" name="nrcredit" class="validate-email required input_field" />
-                        <div class="cleaner h10"></div>
-                        
-						<label for="subject">Date d'expiration</label> 	
-						<!-- Code des combo box pris sur 
-						http://www.glodev.com/script_view.php?ScriptID=29
-						-->
-								<select name="month">
-									<option value="1">January
-									<option value="2">February
-									<option value="3">March
-									<option value="4">April
-									<option value="5">May
-									<option value="6">June
-									<option value="7">July
-									<option value="8">August
-									<option value="9">September
-									<option value="10">October
-									<option value="11">November
-									<option value="12">December
-								</select>
-								<select name="day">
-									<option value="1">1
-									<option value="2">2
-									<option value="3">3
-									<option value="4">4
-									<option value="5">5
-									<option value="6">6
-									<option value="7">7
-									<option value="8">8
-									<option value="9">9
-									<option value="10">10
-									<option value="11">11
-									<option value="12">12
-									<option value="13">13
-									<option value="14">14
-									<option value="15">15
-									<option value="16">16
-									<option value="17">17
-									<option value="18">18
-									<option value="19">19
-									<option value="20">20
-									<option value="21">21
-									<option value="22">22
-									<option value="23">23
-									<option value="24">24
-									<option value="25">25
-									<option value="26">26
-									<option value="27">27
-									<option value="28">28
-									<option value="29">29
-									<option value="30">30
-									<option value="31">31
-								</select>
-								<select name="year">
-									<option value="2002">2002
-									<option value="2003">2003
-									<option value="2004">2004
-									<option value="2005">2005
-								</select>
-						<div class="cleaner h10"></div>
-						<div class="cleaner h10"></div>
-                        <label for="email">Code CVV</label> <input type="text" id="cvv" name="cvv" class="validate-email required input_field" />
+                        <label for="nrCarte">Numero de carte de credit</label> <input type="text" id="nrcredit" name="nrcredit" class="validate-email required input_field" value="1234-5678-9012-3456" />
                         <div class="cleaner h10"></div>
                         
+						<label for="moisExp">Mois d'expiration</label><input type="text" name="moisExp" value="10" class="required input_field" />
+						<label for="anneeExp">Annee d'expiration</label><input type="text" name="anExp" value="2018" class="required input_field" />
+						<div class="cleaner h10"></div>
+				
+                        <label for="email">Code CVV</label> <input type="text" id="cvv" name="cvv" class="validate-email required input_field" value="123"/>
+                        <div class="cleaner h10"></div>
+                        <div class="cleaner h10"></div>
             </form>
 			 <h4>Informations livraison</h4>
         <div id="contact_form">
            <form method="post" name="contact" action="#">
                         
-                        <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" />
+                        <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" value="Bernard Lagrais"/>
 						
                         <div class="cleaner h10"></div>
 						
-                        <label for="email">Numéro appartement:</label> <input type="text" id="app" name="app" class="validate-email required input_field" />
+                        <label for="subject">Numero appartement:</label> <input type="text" id="app" name="app" class="validate-email required input_field" value="75"/>
                         <div class="cleaner h10"></div>
                         
-						<label for="subject">Numéro rue:</label> <input type="text" name="nrrue" id="nrrue" class="input_field" />
+						<label for="subject">Numero rue:</label> <input type="text" name="nrrue" id="nrrue" class="input_field" value="2100"/>
 
 						<div class="cleaner h10"></div>
 						
-						<label for="subject">Nom de rue:</label> <input type="text" name="nomrue" id="nomrue" class="input_field" />
+						<label for="subject">Nom de rue:</label> <input type="text" name="nomrue" id="nomrue" class="input_field" value="Saint-Urbain" />
 						
 						<div class="cleaner h10"></div>
 						
-						 <label for="author">Ville</label> <input type="text" id="ville" name="ville" class="required input_field" />
+						 <label for="subject">Ville</label> <input type="text" id="ville" name="ville" class="required input_field" value="Montreal"/>
 						 
                         <div class="cleaner h10"></div>
 						
-                        <label for="email">Province</label> <input type="text" id="prov" name="prov" class="validate-email required input_field" />
+                        <label for="subject">Province</label> <input type="text" id="prov" name="prov" class="validate-email required input_field" value="Quebec"/>
 						
                         <div class="cleaner h10"></div>
                         
-						<label for="subject">Code postal</label> <input type="text" name="codep" id="codep" class="input_field" />
+						<label for="subject">Code postal</label> <input type="text" name="codep" id="codep" class="input_field" value="J8T2R8"/>
 
 						<div class="cleaner h10"></div>
 						
-                        <form> <div class="float_r"><a href="confirmation.html"><input type="button" class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/></a> </div></form>
+                        <form> <div class="float_r"><input type="button" class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
+                        <input type="button" class="button_cmd" value="Annuler" onclick="AskAndSubmit(this)"/>
+                         </div></form>
 						
             </form>
         </div>
