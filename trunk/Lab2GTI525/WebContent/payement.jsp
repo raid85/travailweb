@@ -93,7 +93,7 @@ ddsmoothmenu.init({
     	<h4>Informations Carte de crédit</h4>
 				
         <div id="contact_form">
-           <form method="post" name="contact" action="#">
+           <form method="post" name="contact" action="./" onSubmit="return valideChamps()">
                         
                         <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" value="Bernard Lagrais"/>
                         <div class="cleaner h10"></div>
@@ -107,10 +107,10 @@ ddsmoothmenu.init({
                         <label for="email">Code CVV</label> <input type="text" id="cvv" name="cvv" class="validate-email required input_field" value="123"/>
                         <div class="cleaner h10"></div>
                         <div class="cleaner h10"></div>
-            </form>
+           
 			 <h4>Informations livraison</h4>
-        <div id="contact_form">
-           <form method="post" name="contact" action="#">
+        	<div id="contact_form">
+           
                         
                         <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" value="Bernard Lagrais"/>
 						
@@ -139,9 +139,11 @@ ddsmoothmenu.init({
 
 						<div class="cleaner h10"></div>
 						
-                        <form> <div class="float_r"><input type="button" class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
+                        <form> 
+                        <input type="hidden" name="action" value="acheter"/>
+                        <input type="button" class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
                         <input type="button" class="button_cmd" value="Annuler" onclick="AskAndSubmit(this)"/>
-                         </div></form>
+                         </form>
 						
             </form>
         </div>

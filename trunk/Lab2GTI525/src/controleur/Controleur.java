@@ -144,7 +144,13 @@ public class Controleur {
 
 			System.out.println("TRACE Controleur: Btn afficherPayement clicked");
 			
-			return "payement.jsp";}else
+			return "payement.jsp";}
+		
+		else if (request.getParameter("action").equals("acheter")){
+
+			System.out.println("TRACE Controleur: Btn acheter clicked");
+			
+			return "confirmation.jsp";}else
 					
 				return "erreur.jsp";
 			

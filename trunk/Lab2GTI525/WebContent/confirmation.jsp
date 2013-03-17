@@ -1,4 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page import="modele.BeanSpectacle"%>
+<%@ page import="modele.Panier"%>
+<%@ page import="java.util.ArrayList;"%>
+<%
+ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+Panier panier  = (Panier)request.getSession().getAttribute("panier");
+
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -87,36 +100,23 @@ ddsmoothmenu.init({
 
 <div id="templatemo_main_top"></div>
 <div id="templatemo_main">
-		<h3>Achat complété avec succès</h3>
-		<br><h4>Numéro de confirmation:</h4>
+		<h3>Achat complete avec succes</h3>
+		<br><h4>Numero de confirmation:</h4>
 		<h4><p id="paragraph"></p></h4>
 		
 	<div class="urbangreymenu">
+ <% for (int i=0; i<panier.getPanier().length;i++){;%>
 
-<h3 class="headerbar">CIRQUE DU SOLEIL - AMALUNA À SEATTLE, WA
-WASHINGTON, SAMEDI, MAI 16, 2013 - <em><b>8</b> Billets </em></h3>
+<h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
+<%=panier.getItemAchete(i).getRep().getSalle()%>
+ - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b>Billets</em>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
 
-
-<h3 class="headerbar">ST-PIERRE vs PENN, AB
-ALBERTA, CANADA, DIMANCHE, MAI 17, 2013 - <em><b>12</b> Billets</em></h3>
+  <%}%>
 <div class="cleaner h10"></div>
-<form> <div class="float_r"><a href="index.html"><input type="button" class="button_cmd" value="Accueil"/></a> </div></form>
+<form> <div class="float_r"><a href="index.jsp"><input type="button" class="button_cmd" value="Accueil"/></a> </div></form>
 
 </div>
-        <p></p>
-        <div class="cleaner"></div>
-        <div class="pagging">
-            <ul>
-                <li><a href="confirmation.html" target="_parent">Précédent</a></li>
-                <li><a href="confirmation.html" target="_parent">1</a></li>
-                <li><a href="confirmation.html" target="_parent">2</a></li>
-                <li><a href="confirmation.html" target="_parent">3</a></li>
-                <li><a href="confirmation.html" target="_parent">4</a></li>
-                <li><a href="confirmation.html" target="_parent">5</a></li>
-                <li><a href="confirmation.html" target="_parent">6</a></li>
-                <li><a href="confirmation.html" target="_parent">Suivant</a></li>
-            </ul>
-        </div> 
+                
     
     <div class="cleaner"></div>
 </div> <!-- END of main -->
@@ -125,7 +125,7 @@ ALBERTA, CANADA, DIMANCHE, MAI 17, 2013 - <em><b>12</b> Billets</em></h3>
 	<div id="templatemo_footer">
 	
 		<div class="col col_14">
-        	<h5>Différents Sites Utiles</h5>
+        	<h5>DiffÃ©rents Sites Utiles</h5>
             <ul class="footer_list">
                 <li><a href="http://www.templatemo.com/page/1">Free CSS Templates</a></li>
                 <li><a href="http://www.webdesignmo.com/blog">Web Design Resources</a></li>
@@ -160,7 +160,7 @@ ALBERTA, CANADA, DIMANCHE, MAI 17, 2013 - <em><b>12</b> Billets</em></h3>
               <input type="submit" name="Inscription" value=" Inscription" alt="Inscription" id="subscribe_button" title="Inscription" class="subscribe_button"  />
             </form>
             <div class="cleaner h30"></div>
-            Copyright © 2013 <a href="#">ÉTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+            Copyright Â© 2013 <a href="#">ÃTS</a> Code source par <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
         </div>
         
     <div class="cleaner"></div>
