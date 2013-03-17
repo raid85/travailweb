@@ -101,21 +101,6 @@ ddsmoothmenu.init({
        		<!-- fin d'un spectacle -->
    <%}%>
 	
-
-
-            
-             <div class="pagging">
-                <ul>
-                    <li><a href="spectacles.jsp" target="_parent">Precedent</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">1</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">2</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">3</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">4</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">5</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">6</a></li>
-                    <li><a href="spectacles.jsp" target="_parent">Suivant</a></li>
-                </ul>
-            </div>
     </div>
     
     <div class="cleaner"></div>
