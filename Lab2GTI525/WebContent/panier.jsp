@@ -4,13 +4,12 @@
 
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <%@ page import="modele.BeanSpectacle"%>
+<%@ page import="modele.Panier"%>
 <%@ page import="java.util.ArrayList;"%>
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
-int nombreBillets = Integer.valueOf(request.getParameter("nbBillets").toString());
-int posSpec = Integer.valueOf(request.getParameter("spec").toString());
-int posRep = Integer.valueOf(request.getParameter("rep").toString());
-double sousTotal = nombreBillets * spectacles.get(posSpec).getListeRepresentations().get(posRep).getPrix() ;
+Panier panier  = (Panier)request.getSession().getAttribute("panier");
+
 %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -111,10 +110,14 @@ function AskAndSubmit(t)
 	<div class="urbangreymenu">
 
 
-<h3 class="headerbar"><%=spectacles.get(posSpec).getNom()%> / <%=spectacles.get(posSpec).getListeRepresentations().get(posRep).getDate()%> - Salle: 
-<%=spectacles.get(posSpec).getListeRepresentations().get(posRep).getSalle()%>
- - <em><b><%=nombreBillets%></b> Billets</em> &nbsp&nbsp<input type="submit" name="btnMoins" value="-" />
-<input type="submit" name="btnPlus" value="+" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Total: <%=sousTotal%>$</h3>
+ <% for (int i=0; i<panier.getPanier().length;i++){;%>
+
+<h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
+<%=panier.getItemAchete(i).getRep().getSalle()%>
+ - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b> Billets</em> &nbsp&nbsp<input type="submit" name="btnMoins" value="-" />
+<input type="submit" name="btnPlus" value="+" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
+
+  <%}%>
 
 <div class="cleaner h10"></div>
 <form> <div class="float_r"><a href="payement.jsp"><input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/></a> </div></form>
@@ -122,18 +125,6 @@ function AskAndSubmit(t)
 </div>
         <p></p>
         <div class="cleaner"></div>
-        <div class="pagging">
-            <ul>
-                <li><a href="panier.jsp" target="_parent">PrÃ©cÃ©dent</a></li>
-                <li><a href="panier.jsp" target="_parent">1</a></li>
-                <li><a href="panier.jsp" target="_parent">2</a></li>
-                <li><a href="panier.jsp" target="_parent">3</a></li>
-                <li><a href="panier.jsp" target="_parent">4</a></li>
-                <li><a href="panier.jsp" target="_parent">5</a></li>
-                <li><a href="panier.jsp" target="_parent">6</a></li>
-                <li><a href="panier.jsp" target="_parent">Suivant</a></li>
-            </ul>
-        </div> 
     
     <div class="cleaner"></div>
 </div> <!-- END of main -->
