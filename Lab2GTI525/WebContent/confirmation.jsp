@@ -89,8 +89,8 @@ ddsmoothmenu.init({
 				<form method="get" action="http://www.google.com/search">
 <input type="text" name="q" size="20" maxlength="255" />
 <input type="submit" name="btnG" VALUE="Rechercher" />
-<input type="hidden" name="domains" value="YOUR DOMAIN NAME" />
-<input type="hidden" name="sitesearch" value="YOUR DOMAIN NAME" />
+<input type="hidden" name="domains" value="http://localhost:8080/Lab2GTI525/" />
+<input type="hidden" name="sitesearch" value="http://localhost:8080/Lab2GTI525/" />
 </form></li>
             </ul>
             <br style="clear: left" />
@@ -106,23 +106,24 @@ ddsmoothmenu.init({
 		
 	<div class="urbangreymenu">
  <% for (int i=0; i<panier.getPanier().length;i++){;%>
-
+<% if(panier.getItemAchete(i).getNbBillets() == 0){i++;}else{%>
 <h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
 <%=panier.getItemAchete(i).getRep().getSalle()%>
  - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b>Billets</em>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
-
+  <%}%>
   <%}%>
 <div class="cleaner h10"></div>
 
-<form>
+
 <p align="right"><b>Total: <%=panier.getTotal()%></b></p>
  <div class="float_r">
- 
- <input type="hidden" class="action" value="revenirAccueil"/> 
- <input type="button" class="button_cmd" value="Accueil"/> 
- 
+<form action="./" method = "post"> 	
+	<input type="submit" class="button_cmd" value="Accueil"/>
+	<input type="hidden" name="action"  value="revenirAccueil" />
+	 </form>
+
  </div>
- </form>
+
 
 </div>
                 

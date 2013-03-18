@@ -168,7 +168,7 @@ ddsmoothmenu.init({
                         <input type="hidden" name="action" value="acheter"/>
                       
                         <input type="submit"  class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
-                        <input type="submit"  class="button_cmd" value="Annuler" />
+                      
                
 						
             </form>

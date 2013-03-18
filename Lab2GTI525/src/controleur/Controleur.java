@@ -156,14 +156,30 @@ public class Controleur {
 			if(nbBilletsReserve < 7 && nbBilletsReserve >0){
 				myPanier.getItemAchete(posItem).setNbBillets(nbBilletsReserve-1) ;			
 				 }
+							
 						
+			if(nbBilletsReserve == 0){
+				myPanier.removeItemAchete(posItem);			
+				 }
 			request.getSession().setAttribute("panier",myPanier);	
-			
 						
 //			System.err.println("ajouterBilletClicked");
 //			System.err.println(nbBilletsReserve);
 			
-			return "panier.jsp";}else
+			return "panier.jsp";}
+		else if (request.getParameter("action").equals("revenirAccueil")){
+
+			System.out.println("TRACE Controleur: Btn revenir a laccueil");
+			
+			Panier myPanier = (Panier) request.getSession().getAttribute("panier");
+			//On Vide le panier pour une autre transaction et on retourne a l<accueil
+			for(int i=0;i<myPanier.getPanier().length;i++){
+			myPanier.removeItemAchete(i);
+			}
+			
+			request.getSession().setAttribute("panier",myPanier);	
+
+			return "index.jsp";}else
 					
 				return "erreur.jsp";
 			
