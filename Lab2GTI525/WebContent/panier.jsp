@@ -111,15 +111,7 @@ function AskAndSubmit(t)
 	<div class="urbangreymenu">
 
 
- <% for (int i=0; i<panier.getPanier().length;i++){;%>
-
-<h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
-<%=panier.getItemAchete(i).getRep().getSalle()%>
- - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b> Billets</em> &nbsp&nbsp<input type="submit" name="btnMoins" value="-" />
-<input type="submit" name="btnPlus" value="+" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
-
-  <%}%>
-
+ <jsp:include page="changer_billets.jsp" /> 
 
 <form> 
 <p align="right"><b>Total: <%=panier.getTotal()%></b></p>
