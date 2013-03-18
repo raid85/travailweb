@@ -109,11 +109,20 @@ ddsmoothmenu.init({
 
 <h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
 <%=panier.getItemAchete(i).getRep().getSalle()%>
- - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b>Billets</em>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
+ - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b>Billets</em>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
 
   <%}%>
 <div class="cleaner h10"></div>
-<form> <div class="float_r"><a href="index.jsp"><input type="button" class="button_cmd" value="Accueil"/></a> </div></form>
+
+<form>
+<p align="right"><b>Total: <%=panier.getTotal()%></b></p>
+ <div class="float_r">
+ 
+ <input type="hidden" class="action" value="revenirAccueil"/> 
+ <input type="button" class="button_cmd" value="Accueil"/> 
+ 
+ </div>
+ </form>
 
 </div>
                 
