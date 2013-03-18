@@ -88,8 +88,12 @@ public class Controleur {
 			//tableau de representations pour le spectacle choisi
 			int posRepresentation = Integer.valueOf(request.getParameter("rep").toString());
 			
+			//int totalBillets=Integer.valueOf(request.getParameter("totalBillets").toString());
+			
 			//On va chercher les stub spectacle à l'aide du patron delegate
 			myDelegate = new DelegateSpectacles();
+			//Ici on ajuste le nombre total de billets disponibles suite à une reservation
+			//myDelegate.getSpectacles().get(posSpectacle).getListeRepresentations().get(posRepresentation).setBilletsDispo(totalBillets - Integer.valueOf(nbBilletsReserve.toString()));	
 			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
 			
 	
@@ -100,11 +104,17 @@ public class Controleur {
 			ArrayList<BeanSpectacle> monTableau =(ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 //			System.out.println("MontTABLE   "+monTableau.size());
 //			System.out.println(""+posSpectacle+" : "+posRepresentation);
+			
+			//On ajoute un item au panier
 			Panier myPanier = (Panier) request.getSession().getAttribute("panier");
 			myPanier.ajouterItem(monTableau.get(posSpectacle).getListeRepresentations().get(posRepresentation),Integer.valueOf(nbBilletsReserve.toString()));		
+			
+			
+			
 			//on set l'attribut panier
 			request.getSession().setAttribute("panier",myPanier);	
-								
+			
+			
 			System.out.println("TRACE Controleur: Btn Reserver clicked");
 					
 			return "panier.jsp";}
