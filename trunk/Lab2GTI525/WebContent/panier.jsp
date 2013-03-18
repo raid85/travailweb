@@ -116,13 +116,14 @@ function AskAndSubmit(t)
 <h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
 <%=panier.getItemAchete(i).getRep().getSalle()%>
  - <em><b><%=panier.getItemAchete(i).getNbBillets()%></b> Billets</em> &nbsp&nbsp<input type="submit" name="btnMoins" value="-" />
-<input type="submit" name="btnPlus" value="+" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
+<input type="submit" name="btnPlus" value="+" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$</h3>
 
   <%}%>
 
-<div class="cleaner h10"></div>
-<form> <div class="float_r">
-<p><em>Total: <%=panier.getTotal()%></em></p>
+
+<form> 
+<p align="right"><b>Total: <%=panier.getTotal()%></b></p>
+<div class="float_r">
 <a href="spectacles.jsp">
 <input type="button" class="button_cmd" value="Retour aux spectacles"/> </a>
 <input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/> 

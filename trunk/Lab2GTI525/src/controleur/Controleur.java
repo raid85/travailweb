@@ -60,17 +60,10 @@ public class Controleur {
 		//Vers page de laffichage des representations
 		else if (request.getParameter("action").equals("afficherRepresentations")){
 
-			
-			
-//			System.out.println(myDelegate.getSpectacles().get(0).getNom());
-//			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
-			
-			
+		
 			
 			System.out.println("TRACE Controleur: Btn voirRepresentations clicked");
-			
-			//System.out.println(((BeanSpectacle)request.getSession().getAttribute("chosenPestacle")).getDescription());			
-			
+		
 			
 			return "representations.jsp";}
 		
@@ -78,18 +71,8 @@ public class Controleur {
 		else if (request.getParameter("action").equals("afficherRepChoisi")){
 
 			
-			
-			
-//			System.out.println(myDelegate.getSpectacles().get(0).getNom());
-//			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
-			
-			
-			
-			
 			System.out.println("TRACE Controleur: Btn voirRepChoisi clicked");
-			
-			
-			
+		
 			return "representation_choisie.jsp";}
 		
 		//Vers page panier
@@ -110,7 +93,7 @@ public class Controleur {
 			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
 			
 	
-			System.out.println("***Se rend dans est vide*******************");
+			System.out.println("***Se rend dans est vide ici ***");
 
 			//On initialise le panier et on le remplit avec la representation choisie		
 			//et le nombre de billets choisi
