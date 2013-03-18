@@ -113,7 +113,7 @@ function AskAndSubmit(t)
 
  <jsp:include page="changer_billets.jsp" /> 
 
-<form> 
+<form action="./" method = "post" "> 
 <p align="right"><b>Total: <%=panier.getTotal()%></b></p>
 <div class="float_r">
 <a href="spectacles.jsp">

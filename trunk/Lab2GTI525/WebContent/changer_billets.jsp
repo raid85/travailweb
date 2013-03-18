@@ -17,30 +17,37 @@ Panier panier  = (Panier)request.getSession().getAttribute("panier");
 </head>
 
 
-<form>
+
  <% for (int i=0; i<panier.getPanier().length;i++){;%>
-		<% if(panier.getItemAchete(i).getNbBillets() == 0){
-			i++;			
-		}%>
+
 		
 <h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: <%=panier.getItemAchete(i).getRep().getSalle()%>- <em><b><%=panier.getItemAchete(i).getNbBillets()%></b> Billets</em> &nbsp&nbsp 
-<form method="post">
+<table border="1" >
+<tr>
+<td>
+<form action="./" method = "post" ">
 		<input type="hidden" name="posItem" value=<%=i%>  />
 		<input type="hidden" name="nbBilletsAchete" value=<%=panier.getItemAchete(i).getNbBillets()%>  />
 		<input type="hidden" name="action" value="ajouterBillet"/>
-		<input type="submit" name="btnPlus" value=" + " />
+		<input type="submit" name="btnPlus" value=" Ajouter un billet " />
 </form>
-<form method="post">
+</td>
+<td>
+<form action="./" method = "post">
 		<input type="hidden" name="posItem" value=<%=i%>  />
 		<input type="hidden" name="nbBilletsAchete" value=<%=panier.getItemAchete(i).getNbBillets()%>  />
 		<input type="hidden" name="action" value="enleverBillet"/>
-		<input type="submit" name="btnMoins" value=" - " /></form> Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$
-
+		<input type="submit" name="btnMoins" value=" Enlever un billet " />
+		</form>
+		</td>
+<tr style="float:right;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$
+</tr>
+</tr>
+</table>
 </h3>
-
+	
   <%}%>
 
-</form>
 
 </body>
 </html>

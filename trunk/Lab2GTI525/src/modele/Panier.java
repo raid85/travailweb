@@ -38,6 +38,12 @@ public class Panier {
 	return this.panier.get(pos);
 	}
 	
+	//retourne un item du panier
+		public void removeItemAchete(int pos){
+			
+		this.panier.remove(pos);
+		}
+	
 	//ajoute un item au panier
 	public void ajouterItem(BeanRepresentation rep, int nbBilletsRep){
 		
