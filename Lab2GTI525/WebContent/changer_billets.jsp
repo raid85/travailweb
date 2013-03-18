@@ -21,12 +21,13 @@ Panier panier  = (Panier)request.getSession().getAttribute("panier");
  <% for (int i=0; i<panier.getPanier().length;i++){;%>
 
 <h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: <%=panier.getItemAchete(i).getRep().getSalle()%>- <em><b><%=panier.getItemAchete(i).getNbBillets()%></b> Billets</em> &nbsp&nbsp 
-<form method="post" action="ajouterBillet"  class="aDroite">
+<form method="post">
+		<input type="hidden" name="action" value="ajouterBillet"/>
 		<input type="submit" name="btnPlus" value=" + " />
 </form>
-<form method="post" action="enleverBillet"  class="aDroite">
-		<input type="submit" name="btnMoins" value=" - " />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$
-</form>
+<form method="post">
+		<input type="submit" name="btnMoins" value=" - " /></form> Sous-Total: <%=panier.getItemAchete(i).getTotal()%>$
+
 </h3>
 
   <%}%>
