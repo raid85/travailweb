@@ -120,7 +120,14 @@ public class Controleur {
 
 			System.out.println("TRACE Controleur: Btn acheter clicked");
 			
-			return "confirmation.jsp";}else
+			return "confirmation.jsp";}
+		//Si le bouton Ajax ajouterBillet a été poussé
+		else if (request.getParameter("action").equals("ajouterBillet")){
+
+			
+			System.err.println("ajouterBilletClicked");
+			
+			return "panier.jsp";}else
 					
 				return "erreur.jsp";
 			
