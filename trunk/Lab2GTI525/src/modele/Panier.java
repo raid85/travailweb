@@ -38,7 +38,7 @@ public class Panier {
 	return this.panier.get(pos);
 	}
 	
-	//retourne un item du panier
+	//enleve un item du panier
 		public void removeItemAchete(int pos){
 			
 		this.panier.remove(pos);
