@@ -90,6 +90,9 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
 	background: url(../images/templatemo_divider.png) repeat-x bottom; 
 }
 
+.aGauche { float:left; }
+.aDroite { align:right; }
+
 /*
 Ce code montre des erreurs dans w3c validator 
 cependant si je change le code l'Aspect du bouton 
