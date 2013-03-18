@@ -9,7 +9,6 @@
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 Panier panier  = (Panier)request.getSession().getAttribute("panier");
-
 %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -123,6 +122,9 @@ function AskAndSubmit(t)
 
 <div class="cleaner h10"></div>
 <form> <div class="float_r">
+<p><em>Total: <%=panier.getTotal()%></em></p>
+<a href="spectacles.jsp">
+<input type="button" class="button_cmd" value="Retour aux spectacles"/> </a>
 <input type="button" class="button_cmd" value="Finaliser commande" onclick="AskAndSubmit(this)"/> 
 <input type="hidden" name="action"  value="afficherPayement" />
 </div>

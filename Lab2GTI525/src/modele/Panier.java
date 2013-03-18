@@ -7,7 +7,10 @@ public class Panier {
 	//on construit le panier avec une liste d<items achetes
 	ArrayList<itemAchete> panier = new ArrayList<itemAchete>();
 	
-	
+	//constructeur vide pour le controleur a etre utilise
+	public Panier(){
+		
+	}
 
 	public Panier(BeanRepresentation rep, int nbBilletsRep){
 		
@@ -53,7 +56,20 @@ public class Panier {
 			return bool;
 		}
 		
+	}	
 		
-	}
+	public double getTotal(){
+		
+		double total = 0;
+		
+		for(int i=0; i<panier.size();i++){
+
+			total = total + panier.get(i).getTotal();
+		}
+		
+		return total;
+	}	
+		
+	
 	
 }

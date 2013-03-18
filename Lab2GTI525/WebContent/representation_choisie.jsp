@@ -77,6 +77,12 @@ if (formReservation.nbBillets.value == "")
    formReservation.nbBillets.focus();
   // return false to stop further processing
    return (false);
+  //Si plus de 6 billets ont été ahetes pour une representation 
+}else if(formReservation.nbBillets.value > 6){
+	 
+	   alert("Vous ne pouvez pas acheter plus de 6 Billets par representation");
+	   formReservation.nbBillets.focus();
+	   return (false);
 }
 // If text_name is not null continue processing
 return (true);
@@ -161,8 +167,7 @@ ddsmoothmenu.init({
 		    <input type="hidden" name="rep" value=<%=posRepChoisi%> />
 			<input type="hidden" name="spec"  value=<%=posSpectacleChoisi%> />
 		    <input type="submit" name="btnReserver" value=" Réserver " alt="Réserver" title=" Réserver le nombre de billets inscrits, ils seront ajoutés au panier" class="button_cmd"/>
-		 	<input type="hidden" name="panier"  value=<%=panier%> />
-		 	<input type="hidden" name="action"  value="ajouterDansPanier" />
+		    <input type="hidden" name="action"  value="ajouterDansPanier" />
 			
 			</form>		
 
