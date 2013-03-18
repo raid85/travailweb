@@ -17,13 +17,39 @@ function clearText(field)
 <script type="text/javascript" language="JavaScript">
 function AskAndSubmit(t)
 {
-  var answer = confirm("Vous étes sûr de vouloir compléter votre achat? Cette opération est irréversible");
+  var answer = confirm("Vous etes surs de vouloir completer votre achat? Cette opération est irréversible");
   if (answer)
   {
     t.form.submit();
   }else{
 	  return false;
   }
+  
+  function valideChamps() {
+	  
+
+  	var nomClient = document.form.nomClient;
+	var prenomClient = document.form.prenomClient;
+	var emailClient = document.form.emailClient;
+	var moisExp = document.form.moisExp;
+	var anExp = document.form.anExpt;
+	var cvv = document.form.cvv;
+	var nrRue = document.form.nrRue;
+	var appart = document.form.appart;
+	var nomRue = document.form.nomRue;
+	var ville = document.form.ville;
+	var prov = document.form.prov;
+	var codep = document.form.codep;
+
+	if ((nomClient.value == "") || (nomClient.value == null)) {
+		alert("Veuillez inscrire le nom associ� � la carte de cr�dit utilis�")
+		nomClient.focus();
+		return false;
+	}
+	
+	return true;
+  }
+	
 }
 //Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525
        //http://stackoverflow.com/questions/293648/display-confirmation-popup-with-javascript-upon-clicking-on-a-link
@@ -90,60 +116,60 @@ ddsmoothmenu.init({
 	
 	
     <div class="col_12 float_c">
-    	<h4>Informations Carte de crédit</h4>
+    	<h4>Informations Carte de credit</h4>
 				
         <div id="contact_form">
            <form method="post" name="contact" action="./" onSubmit="return valideChamps()">
                         
-                        <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" value="Bernard Lagrais"/>
+                        <label for="author">Nom:</label> <input type="text"  name="nomClient" class="required input_field" value="Lagrais"/>
                         <div class="cleaner h10"></div>
-                        <label for="nrCarte">Numero de carte de credit</label> <input type="text" id="nrcredit" name="nrcredit" class="validate-email required input_field" value="1234-5678-9012-3456" />
+                         <label for="author">Prenom:</label> <input type="text" name="prenomClient" class="required input_field" value="Bernard"/>
+                        <div class="cleaner h10"></div>
+                         <label for="author">Courriel:</label> <input type="text" name="emailClient" class="required input_field" value="bernardlagrais@Domaine.com"/>
+                        <div class="cleaner h10"></div>
+                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCredit" class="validate-email required input_field" value="1234-5678-9012-3456" />
                         <div class="cleaner h10"></div>
                         
 						<label for="moisExp">Mois d'expiration</label><input type="text" name="moisExp" value="10" class="required input_field" />
 						<label for="anneeExp">Annee d'expiration</label><input type="text" name="anExp" value="2018" class="required input_field" />
 						<div class="cleaner h10"></div>
 				
-                        <label for="email">Code CVV</label> <input type="text" id="cvv" name="cvv" class="validate-email required input_field" value="123"/>
+                        <label for="cvv">Code CVV</label> <input type="text" name="cvv" class="validate-email required input_field" value="123"/>
                         <div class="cleaner h10"></div>
                         <div class="cleaner h10"></div>
            
 			 <h4>Informations livraison</h4>
         	<div id="contact_form">
-           
                         
-                        <label for="author">Nom:</label> <input type="text" id="author" name="author" class="required input_field" value="Bernard Lagrais"/>
-						
+						<label for="subject">Numero rue:</label> <input type="text" name="nrRue" class="input_field" value="2100"/>
+
+     					<label for="subject">Numero appartement:</label> <input type="text" name="appart" class="validate-email required input_field" value="75"/>
                         <div class="cleaner h10"></div>
-						
-                        <label for="subject">Numero appartement:</label> <input type="text" id="app" name="app" class="validate-email required input_field" value="75"/>
-                        <div class="cleaner h10"></div>
-                        
-						<label for="subject">Numero rue:</label> <input type="text" name="nrrue" id="nrrue" class="input_field" value="2100"/>
 
 						<div class="cleaner h10"></div>
 						
-						<label for="subject">Nom de rue:</label> <input type="text" name="nomrue" id="nomrue" class="input_field" value="Saint-Urbain" />
+						<label for="subject">Nom de rue:</label> <input type="text" name="nomRue" class="input_field" value="Saint-Urbain" />
 						
 						<div class="cleaner h10"></div>
 						
-						 <label for="subject">Ville</label> <input type="text" id="ville" name="ville" class="required input_field" value="Montreal"/>
+						 <label for="subject">Ville</label> <input type="text" name="ville" class="required input_field" value="Montreal"/>
 						 
                         <div class="cleaner h10"></div>
 						
-                        <label for="subject">Province</label> <input type="text" id="prov" name="prov" class="validate-email required input_field" value="Quebec"/>
+                        <label for="subject">Province</label> <input type="text" name="prov" class="validate-email required input_field" value="Quebec"/>
 						
                         <div class="cleaner h10"></div>
                         
-						<label for="subject">Code postal</label> <input type="text" name="codep" id="codep" class="input_field" value="J8T2R8"/>
+						<label for="subject">Code postal</label> <input type="text" name="codep" class="input_field" value="J8T2R8"/>
 
 						<div class="cleaner h10"></div>
 						
-                        <form> 
+               
                         <input type="hidden" name="action" value="acheter"/>
-                        <input type="button" class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
-                        <input type="button" class="button_cmd" value="Annuler" onclick="AskAndSubmit(this)"/>
-                         </form>
+                      
+                        <input type="submit"  class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
+                        <input type="submit"  class="button_cmd" value="Annuler" />
+               
 						
             </form>
         </div>

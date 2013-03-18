@@ -6,6 +6,8 @@
  */
 package controleur;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,11 +26,22 @@ public class Controleur {
 	//methode qui gère l'application web 
 	public String doHandle(HttpServletRequest request, HttpServletResponse response){		
 		
+		DelegateSpectacles myDelegate = null;
+		Panier panier = null;
+		//on va envoyer les spectacles à la session
 		
 		//Premier load de la page
 		if (request.getParameterMap().size() < 1){	
 				
 			
+			myDelegate = new DelegateSpectacles();
+			System.out.println(myDelegate.getSpectacles().get(0).getNom());
+			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());	
+			
+				//initialisation du panier
+				 panier = new Panier(); 
+			
+				request.getSession().setAttribute("panier", panier);
 				System.out.println("TRACE Controleur: Premier load de la page");
 				return "index.jsp";
 			}
@@ -39,11 +52,7 @@ public class Controleur {
 
 			
 				System.out.println("TRACE Controleur: Btn Rechercher Spectacles clicked");
-				
-				//on va envoyer les spectacles à la session
-				DelegateSpectacles myDelegate = new DelegateSpectacles();
-				System.out.println(myDelegate.getSpectacles().get(0).getNom());
-				request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
+	
 				
 				//on redirige jsp populé
 				return "spectacles.jsp";
@@ -52,9 +61,9 @@ public class Controleur {
 		else if (request.getParameter("action").equals("afficherRepresentations")){
 
 			
-			DelegateSpectacles myDelegate = new DelegateSpectacles();
-			System.out.println(myDelegate.getSpectacles().get(0).getNom());
-			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
+			
+//			System.out.println(myDelegate.getSpectacles().get(0).getNom());
+//			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
 			
 			
 			
@@ -68,20 +77,17 @@ public class Controleur {
 		//Vers page choisir nbBillets
 		else if (request.getParameter("action").equals("afficherRepChoisi")){
 
-			//BeanRepresentation repDummy = new BeanRepresentation();
 			
-			DelegateSpectacles myDelegate = new DelegateSpectacles();
-			System.out.println(myDelegate.getSpectacles().get(0).getNom());
-			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
 			
-			//On initialise le panier vide ici car il sera utile au niveau de representation_choisie.jsp		
-			//
-			//Panier panier = new Panier(repDummy,1);
+			
+//			System.out.println(myDelegate.getSpectacles().get(0).getNom());
+//			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
+			
+			
 			
 			
 			System.out.println("TRACE Controleur: Btn voirRepChoisi clicked");
 			
-			//System.out.println(((BeanSpectacle)request.getSession().getAttribute("chosenPestacle")).getDescription());			
 			
 			
 			return "representation_choisie.jsp";}
@@ -89,8 +95,6 @@ public class Controleur {
 		//Vers page panier
 		else if (request.getParameter("action").equals("ajouterDansPanier")){
 
-			
-			boolean bool = true;//variable pour des tests
 			
 			//nb billets capte du jsp
 			String nbBilletsReserve = request.getParameter("nbBillets");
@@ -102,39 +106,22 @@ public class Controleur {
 			int posRepresentation = Integer.valueOf(request.getParameter("rep").toString());
 			
 			//On va chercher les stub spectacle à l'aide du patron delegate
-			DelegateSpectacles myDelegate = new DelegateSpectacles();
+			myDelegate = new DelegateSpectacles();
+			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
 			
-			
-			
-		
-			//Si le panier est vide(premiere fois qu'on y ajoute quelquechose)
-			if(bool){
-			
-				System.out.println("***Se rend dans est vide*******************");
-
-					//On initialise le panier et on le remplit avec la representation choisie		
-					//et le nombre de billets choisi
-					Panier panier = new Panier(myDelegate.getSpectacles().get(posSpectacle).getListeRepresentations().get(posRepresentation),Integer.valueOf(nbBilletsReserve.toString()));
-					
-					//on set l'attribut panier
-					request.getSession().setAttribute("panier",panier);	
-			}
-			//Si le panier contient deja des billets pour un autre spectacle
-			else{
-				
-				System.out.println("***Se rend dans est pas vide*******************");
-				
-				
-				Panier newPanier=(Panier)request.getAttribute("panier");
-				newPanier.ajouterItem(myDelegate.getSpectacles().get(posSpectacle).getListeRepresentations().get(posRepresentation),Integer.valueOf(nbBilletsReserve.toString()));
 	
-				//on set l'attribut panier
-				request.getSession().setAttribute("panier",newPanier);	
-			}
-		
-			//on set l'atribut spectacles pour la session
-			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());				
-									
+			System.out.println("***Se rend dans est vide*******************");
+
+			//On initialise le panier et on le remplit avec la representation choisie		
+			//et le nombre de billets choisi
+			ArrayList<BeanSpectacle> monTableau =(ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
+//			System.out.println("MontTABLE   "+monTableau.size());
+//			System.out.println(""+posSpectacle+" : "+posRepresentation);
+			Panier myPanier = (Panier) request.getSession().getAttribute("panier");
+			myPanier.ajouterItem(monTableau.get(posSpectacle).getListeRepresentations().get(posRepresentation),Integer.valueOf(nbBilletsReserve.toString()));		
+			//on set l'attribut panier
+			request.getSession().setAttribute("panier",myPanier);	
+								
 			System.out.println("TRACE Controleur: Btn Reserver clicked");
 					
 			return "panier.jsp";}
