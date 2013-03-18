@@ -77,7 +77,7 @@ function AskAndSubmit(t)
 		
 	<div class="urbangreymenu">
 
-<form method="post" action="nouveauBillets.do">
+<form method="post" action="nouveauBillets">
  <% for (int i=0; i<panier.getPanier().length;i++){;%>
 
 <h3 class="headerbar"><%=panier.getItemAchete(i).getRep().getNomSpectacle()%> / <%=panier.getItemAchete(i).getRep().getDate()%> - Salle: 
