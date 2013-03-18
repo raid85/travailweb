@@ -93,7 +93,7 @@ public class Controleur {
 			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
 			
 	
-			System.out.println("***Se rend dans est vide ici ***");
+			System.out.println("***Se rend ici ***");
 
 			//On initialise le panier et on le remplit avec la representation choisie		
 			//et le nombre de billets choisi
@@ -125,7 +125,43 @@ public class Controleur {
 		else if (request.getParameter("action").equals("ajouterBillet")){
 
 			
-			System.err.println("ajouterBilletClicked");
+			Panier myPanier = (Panier) request.getSession().getAttribute("panier");
+			//nb billets reserv/s qu'on veux modifier
+			int nbBilletsReserve =  Integer.valueOf((request.getParameter("nbBilletsAchete")).toString());
+			//position de l'item dans lepanier surlequel on veux modifier le nombre de billets
+			int posItem =  Integer.valueOf((request.getParameter("posItem")).toString());
+			
+			//On ne laisse pas au client le choix d'acheter plus de billets
+			if(nbBilletsReserve < 6 && nbBilletsReserve >=0){
+				myPanier.getItemAchete(posItem).setNbBillets(nbBilletsReserve+1) ;			
+				 }
+						
+			request.getSession().setAttribute("panier",myPanier);	
+			
+						
+//			System.err.println("ajouterBilletClicked");
+//			System.err.println(nbBilletsReserve);
+			
+			return "panier.jsp";}
+		else if (request.getParameter("action").equals("enleverBillet")){
+
+			
+			Panier myPanier = (Panier) request.getSession().getAttribute("panier");
+			//nb billets reserv/s qu'on veux modifier
+			int nbBilletsReserve =  Integer.valueOf((request.getParameter("nbBilletsAchete")).toString());
+			//position de l'item dans lepanier surlequel on veux modifier le nombre de billets
+			int posItem =  Integer.valueOf((request.getParameter("posItem")).toString());
+			
+			//On ne laisse pas au client le choix d'acheter mois de billets que 0
+			if(nbBilletsReserve < 7 && nbBilletsReserve >0){
+				myPanier.getItemAchete(posItem).setNbBillets(nbBilletsReserve-1) ;			
+				 }
+						
+			request.getSession().setAttribute("panier",myPanier);	
+			
+						
+//			System.err.println("ajouterBilletClicked");
+//			System.err.println(nbBilletsReserve);
 			
 			return "panier.jsp";}else
 					
