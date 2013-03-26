@@ -107,6 +107,7 @@ ddsmoothmenu.init({
 	<form action="./" method = "post"> 	
 	<input type="submit" class="button_cmd" value="Rechercher Spectacles"/>
 	<input type="hidden" name="action"  value="chercheSpectacles" />
+	<input type="hidden" name="action"  value="ajouteAuPanier" />
 	 </form>
 </center>
    
