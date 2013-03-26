@@ -6,6 +6,7 @@
  */
 package controleur;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,8 +36,18 @@ public class Controleur {
 
 
 			myDelegate = new DelegateSpectacles();
-			System.out.println(myDelegate.getSpectacles().get(0).getNom());
-			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());	
+			try {
+				System.out.println(myDelegate.getSpectacles().get(0).getNom());
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 
 			//initialisation du panier
 			panier = new Panier(); 
@@ -94,7 +105,12 @@ public class Controleur {
 			myDelegate = new DelegateSpectacles();
 			//Ici on ajuste le nombre total de billets disponibles suite à une reservation
 			//myDelegate.getSpectacles().get(posSpectacle).getListeRepresentations().get(posRepresentation).setBilletsDispo(totalBillets - Integer.valueOf(nbBilletsReserve.toString()));	
-			request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
+			try {
+				request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 
 			System.out.println("***Se rend ici ***");
