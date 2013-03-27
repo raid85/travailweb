@@ -13,7 +13,7 @@ public class SpectacleDAO {
 	//FIXME: Ceci devrait [etre fourni dans un config file et no pas harcode
 	public static final String driver = "org.sqlite.JDBC";
 	//adresse de la bd locale
-	private static String url = "jdbc:sqlite:F:/EclipseWorkspace/Lab2GTI525/BD/bd.sqlite";
+	private static String url = "jdbc:sqlite:F:/EclipseWorkspace/Lab2GTI525/BD/bd";
 	private static ResultSet resultatBD;
 	
 	private BeanSpectacle beanSpectacle ;
@@ -49,9 +49,16 @@ public class SpectacleDAO {
 		Statement stmt = con.createStatement();
 		stmt.close();
 		resSet = stmt.executeQuery(sqlRequest);
-		con.close();
+		return 	resSet;
 		}catch(SQLException sqlE){ sqlE.printStackTrace();}
 		catch(ClassNotFoundException cE){cE.printStackTrace();}
+		try {
+			System.out.println(resSet.getObject(1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return 	resSet;
 		
 	}
@@ -82,15 +89,19 @@ public class SpectacleDAO {
 		//***----------------------------*******
 		//      Exemple comment accéder a la bd
 		//***----------------------------*******
+		
 		resultatBD = sqlQuerry("SELECT Spectacles.Nom FROM Spectacles WHERE Spectacles.Id_Spectacle = 1");
+		System.out.println("TRACE" + resultatBD.getString(1));   
+		
 		try
 		 {
-	            String fName;
+			
+				String fName;
 	            while(resultatBD.next())
 	            {
-	                fName = resultatBD.getString("Nom");
+	                fName = resultatBD.getString(1);
 	                
-	                System.out.println("BD ***********/////////-:" + fName);
+	                System.out.println("2222 BD ***********/////////-:" + fName);
 	            }
 	        }
 	        catch(Exception e)
