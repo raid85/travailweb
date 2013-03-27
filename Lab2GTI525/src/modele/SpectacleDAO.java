@@ -13,7 +13,7 @@ public class SpectacleDAO {
 	//FIXME: Ceci devrait [etre fourni dans un config file et no pas harcode
 	public static final String driver = "org.sqlite.JDBC";
 	//adresse de la bd locale
-	private static String url = "jdbc:sqlite:F:/EclipseWorkspace/Lab2GTI525/BD/bd";
+	private static String url = "jdbc:sqlite:F:/EclipseWorkspace/Lab2GTI525/BD/bd.sqlite";
 	private static ResultSet resultatBD;
 	
 	private BeanSpectacle beanSpectacle ;
