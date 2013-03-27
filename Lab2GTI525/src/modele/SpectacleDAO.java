@@ -109,6 +109,10 @@ public class SpectacleDAO {
 	            System.out.println("Error processing results: " + e.toString());
 	        }   
 		
+		//******************************************
+		//****---------------Fin Example-----------
+		
+		
 		//Instanciation du Bean		
 		beanSpectacle = new BeanSpectacle();
 
