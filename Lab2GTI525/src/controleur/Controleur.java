@@ -113,7 +113,7 @@ public class Controleur {
 			}
 
 
-			System.out.println("***Se rend ici ***");
+			//System.out.println("***Se rend ici ***");
 
 			//On initialise le panier et on le remplit avec la representation choisie		
 			//et le nombre de billets choisi
@@ -142,9 +142,16 @@ public class Controleur {
 
 			return "payement.jsp";}
 
-		else if (request.getParameter("action").equals("acheter")){
+		//vers page de confirmation d'achat
+		else if (request.getParameter("action").equals("preAuthorisation")){
 
-			System.out.println("TRACE Controleur: Btn acheter clicked");
+			System.out.println("TRACE Controleur: Btn preAuthorisation clicked");
+
+			return "confPayement.jsp";}
+		//si l'achat est confirmé on redirige vers la page de confirmation
+		else if (request.getParameter("action").equals("achatConfirme")){
+
+			System.out.println("TRACE Controleur: Btn achatConfirme clicked");
 
 			return "confirmation.jsp";}
 		//Si le bouton Ajax ajouterBillet a été poussé
@@ -193,9 +200,21 @@ public class Controleur {
 			//			System.err.println(nbBilletsReserve);
 
 			return "panier.jsp";}
+		//Si toutes les transactions de la session sont complétés on reviens a l'accueil
 		else if (request.getParameter("action").equals("revenirAccueil")){
 
 			System.out.println("TRACE Controleur: Btn revenir a laccueil");
+
+			//On Vide le panier pour une autre transaction et on retourne a l'accueil
+			Panier myPanier = new Panier();
+			
+			request.getSession().setAttribute("panier",myPanier);	
+
+			return "index.jsp";}
+		//si on désire annuler l'achat
+		else if (request.getParameter("action").equals("annuler")){
+
+			System.out.println("TRACE Controleur: Btn annuler clicker");
 
 			//On Vide le panier pour une autre transaction et on retourne a l'accueil
 			Panier myPanier = new Panier();

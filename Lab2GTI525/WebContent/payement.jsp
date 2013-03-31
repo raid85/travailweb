@@ -24,15 +24,25 @@ function AskAndSubmit(t)
   }else{
 	  return false;
   }
+
+
+	
+}
+//Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525
+       //http://stackoverflow.com/questions/293648/display-confirmation-popup-with-javascript-upon-clicking-on-a-link
+	   //-->
+  </script>
   
+  <script type="text/javascript" language="JavaScript">
   function valideChamps() {
 	  
 
   	var nomClient = document.form.nomClient;
 	var prenomClient = document.form.prenomClient;
 	var emailClient = document.form.emailClient;
+	var nrCarte = document.form.nrCarte;
 	var moisExp = document.form.moisExp;
-	var anExp = document.form.anExpt;
+	var anExp = document.form.anExp;
 	var cvv = document.form.cvv;
 	var nrRue = document.form.nrRue;
 	var appart = document.form.appart;
@@ -42,19 +52,71 @@ function AskAndSubmit(t)
 	var codep = document.form.codep;
 
 	if ((nomClient.value == "") || (nomClient.value == null)) {
-		alert("Veuillez inscrire le nom associé à la carte de crédit utilisé")
+		alert("Veuillez inscrire le nom associe a la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((prenomClient.value == "") || (prenomClient.value == null)) {
+		alert("Veuillez inscrire le prenom associe a la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((emailClient.value == "") || (emailClient.value == null)) {
+		alert("Veuillez inscrire une adresse courriel pour vous rejoindre")
+		nomClient.focus();
+		return false;
+	}
+	if ((moisExp.value == "") || (moisExp.value == null)) {
+		alert("Veuillez inscrire le mois d'expiration de la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((nrCarte.value == "") || (nrCarte.value == null)) {
+		alert("Veuillez inscrire le numero de la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((anExp.value == "") || (anExp.value == null)) {
+		alert("Veuillez inscrire l'annee d'expiration de la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((cvv.value == "") || (cvv.value == null)) {
+		alert("Veuillez inscrire le code cvv de la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((nrRue.value == "") || (nrRue.value == null)) {
+		alert("Veuillez inscrire le numero de rue de l'adresse du titulaire de la carte de crédit")
+		nomClient.focus();
+		return false;
+	}
+	if ((nomRue.value == "") || (nomRue.value == null)) {
+		alert("Veuillez inscrire l'annee d'expiration de la carte de credit utilise")
+		nomClient.focus();
+		return false;
+	}
+	if ((ville.value == "") || (ville.value == null)) {
+		alert("Veuillez inscrire la ville du titulaire")
+		nomClient.focus();
+		return false;
+	}
+	if ((prov.value == "") || (prov.value == null)) {
+		alert("Veuillez inscrire une province")
+		nomClient.focus();
+		return false;
+	}
+	if ((codep.value == "") || (codep.value == null)) {
+		alert("Veuillez inscrire le code postals")
 		nomClient.focus();
 		return false;
 	}
 	
+	
+	
+	
 	return true;
   }
-	
-}
-//Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525
-       //http://stackoverflow.com/questions/293648/display-confirmation-popup-with-javascript-upon-clicking-on-a-link
-	   //-->
-
 </script>
 <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 
@@ -99,7 +161,7 @@ ddsmoothmenu.init({
 				<li>
 				<!--  Code pris sur le site http://www.codingforums.com/archive/index.php/t-40220.html--> 
 				
-				<form method="get" action="http://www.google.com/search">
+<form method="get" action="http://www.google.com/search">
 <input type="text" name="q" size="20" maxlength="255" />
 <input type="submit" name="btnG" VALUE="Rechercher" />
 <input type="hidden" name="domains" value="YOUR DOMAIN NAME" />
@@ -119,7 +181,7 @@ ddsmoothmenu.init({
     	<h4>Informations Carte de credit</h4>
 				
         <div id="contact_form">
-           <form method="post" name="contact" action="./" onSubmit="return valideChamps()">
+           <form method="post" name="form" action="./" onSubmit="return valideChamps()">
                         
                         <label for="author">Nom:</label> <input type="text"  name="nomClient" class="required input_field" value="Lagrais"/>
                         <div class="cleaner h10"></div>
@@ -127,7 +189,7 @@ ddsmoothmenu.init({
                         <div class="cleaner h10"></div>
                          <label for="author">Courriel:</label> <input type="text" name="emailClient" class="required input_field" value="bernardlagrais@Domaine.com"/>
                         <div class="cleaner h10"></div>
-                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCredit" class="validate-email required input_field" value="1234-5678-9012-3456" />
+                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCarte" class="validate-email required input_field" value="1234-5678-9012-3456" />
                         <div class="cleaner h10"></div>
                         
 						<label for="moisExp">Mois d'expiration</label><input type="text" name="moisExp" value="10" class="required input_field" />
@@ -139,7 +201,7 @@ ddsmoothmenu.init({
                         <div class="cleaner h10"></div>
            
 			 <h4>Informations livraison</h4>
-        	<div id="contact_form">
+        	
                         
 						<label for="subject">Numero rue:</label> <input type="text" name="nrRue" class="input_field" value="2100"/>
 
@@ -165,15 +227,15 @@ ddsmoothmenu.init({
 						<div class="cleaner h10"></div>
 						
                
-                        <input type="hidden" name="action" value="acheter"/>
-                      
-                        <input type="submit"  class="button_cmd" value="Acheter" onclick="AskAndSubmit(this)"/>
+                        <input type="hidden" name="action" value="preAuthorisation"/>
+                      															
+                        <input type="submit"  class="button_cmd" value="Acheter" /><!-- onclick="AskAndSubmit(this)" -->
                       
                
 						
             </form>
         </div>
-        </div>
+     
 	
         
 	</div>
