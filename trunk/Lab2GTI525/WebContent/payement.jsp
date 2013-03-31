@@ -49,6 +49,7 @@ function AskAndSubmit(t)
 	var nomRue = document.form.nomRue;
 	var ville = document.form.ville;
 	var prov = document.form.prov;
+	var pays = document.form.pays;
 	var codep = document.form.codep;
 
 	if ((nomClient.value == "") || (nomClient.value == null)) {
@@ -104,6 +105,11 @@ function AskAndSubmit(t)
 	if ((prov.value == "") || (prov.value == null)) {
 		alert("Veuillez inscrire une province")
 		prov.focus();
+		return false;
+	}
+	if ((pays.value == "") || (pays.value == null)) {
+		alert("Veuillez inscrire une province")
+		pays.focus();
 		return false;
 	}
 	if ((codep.value == "") || (codep.value == null)) {
@@ -218,6 +224,10 @@ ddsmoothmenu.init({
                         <div class="cleaner h10"></div>
 						
                         <label for="subject">Province</label> <input type="text" name="prov" class="validate-email required input_field" value="Quebec"/>
+						
+                        <div class="cleaner h10"></div>
+                        
+                        <label for="subject">Province</label> <input type="text" name="pays" class="required input_field" value="Canada"/>
 						
                         <div class="cleaner h10"></div>
                         
