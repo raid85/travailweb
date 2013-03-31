@@ -45,7 +45,7 @@ function clearText(field)
 <script>
 function fonctionRand()
 {
-document.getElementById("paragraph").innerHTML=(Math.random()*99999);
+document.getElementById("paragraph").innerHTML=(Math.random()*100);
 }
 
 //Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525

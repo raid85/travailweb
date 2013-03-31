@@ -42,16 +42,7 @@ function clearText(field)
 ***********************************************/
 
 </script>
-<script>
-function fonctionRand()
-{
-document.getElementById("paragraph").innerHTML=(Math.random()*99999);
-}
 
-//Code pris du site web ci-dessous, pour utiliser dans le cadre de notre cours de GTI525
-       //http://www.w3schools.com/jsref/jsref_random.asp
-	   //-->
-</script>
 <script type="text/javascript">
 
 ddsmoothmenu.init({
@@ -101,8 +92,7 @@ ddsmoothmenu.init({
 <div id="templatemo_main_top"></div>
 <div id="templatemo_main">
 		<h3>Veuillez confirmer votre Achat</h3>
-		<br><h4>Numero de confirmation:</h4>
-		<h4><p id="paragraph"></p></h4>
+	<br>
 		
 	<div class="urbangreymenu">
  <% for (int i=0; i<panier.getPanier().length;i++){;%>

@@ -58,62 +58,61 @@ function AskAndSubmit(t)
 	}
 	if ((prenomClient.value == "") || (prenomClient.value == null)) {
 		alert("Veuillez inscrire le prenom associe a la carte de credit utilise")
-		nomClient.focus();
+		prenomClient.focus();
 		return false;
 	}
 	if ((emailClient.value == "") || (emailClient.value == null)) {
 		alert("Veuillez inscrire une adresse courriel pour vous rejoindre")
-		nomClient.focus();
+		emailClient.focus();
 		return false;
 	}
 	if ((moisExp.value == "") || (moisExp.value == null)) {
 		alert("Veuillez inscrire le mois d'expiration de la carte de credit utilise")
-		nomClient.focus();
+		moisExp.focus();
 		return false;
 	}
 	if ((nrCarte.value == "") || (nrCarte.value == null)) {
 		alert("Veuillez inscrire le numero de la carte de credit utilise")
-		nomClient.focus();
+		nrCarte.focus();
 		return false;
 	}
 	if ((anExp.value == "") || (anExp.value == null)) {
 		alert("Veuillez inscrire l'annee d'expiration de la carte de credit utilise")
-		nomClient.focus();
+		anExp.focus();
 		return false;
 	}
 	if ((cvv.value == "") || (cvv.value == null)) {
 		alert("Veuillez inscrire le code cvv de la carte de credit utilise")
-		nomClient.focus();
+		cvv.focus();
 		return false;
 	}
 	if ((nrRue.value == "") || (nrRue.value == null)) {
 		alert("Veuillez inscrire le numero de rue de l'adresse du titulaire de la carte de crédit")
-		nomClient.focus();
+		nrRue.focus();
 		return false;
 	}
 	if ((nomRue.value == "") || (nomRue.value == null)) {
-		alert("Veuillez inscrire l'annee d'expiration de la carte de credit utilise")
-		nomClient.focus();
+		alert("Veuillez inscrire un nom de rue")
+		nomRue.focus();
 		return false;
 	}
 	if ((ville.value == "") || (ville.value == null)) {
 		alert("Veuillez inscrire la ville du titulaire")
-		nomClient.focus();
+		ville.focus();
 		return false;
 	}
 	if ((prov.value == "") || (prov.value == null)) {
 		alert("Veuillez inscrire une province")
-		nomClient.focus();
+		prov.focus();
 		return false;
 	}
 	if ((codep.value == "") || (codep.value == null)) {
-		alert("Veuillez inscrire le code postals")
-		nomClient.focus();
+		alert("Veuillez inscrire le code postal")
+		codep.focus();
 		return false;
 	}
 	
-	
-	
+	//le champ appartement peut être null, dans le cas ou le client réside une maison
 	
 	return true;
   }
