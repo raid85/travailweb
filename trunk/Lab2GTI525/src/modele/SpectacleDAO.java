@@ -72,42 +72,58 @@ public class SpectacleDAO {
 
 	private void populateSpectacles() throws ClassNotFoundException, SQLException {
 
-		//Instanciation du Bean
-		beanRepresentation = new BeanRepresentation();
-
-		//Création du Bean
-		beanRepresentation.setId(2);
-		beanRepresentation.setBilletsDispo(162);
-		beanRepresentation.setNomSpectacle("Georges St-Pierre");
-		beanRepresentation.setPrix(100);
-		beanRepresentation.setSalle("Bruno Payette Est");
-		beanRepresentation.setDate("23 Juin 2013");
-
-		//on ajoute le bean à la liste	
-		listeRepresentations.add(beanRepresentation);
+		int nbSpectacles = sqlQuerry("select count (*) from spectacle").getInt(1);
+		System.out.println("TEST HANI "+nbSpectacles);
+		
+		for (int i=0; i<1; i++){
+			beanRepresentation = new BeanRepresentation();
+			beanRepresentation.setId(sqlQuerry("select id from representation where representation.id="+(i+1)).getInt(1));
+			beanRepresentation.setBilletsDispo(sqlQuerry("select billets from representation where representation.id="+(i+1)).getInt(1));
+			beanRepresentation.setNomSpectacle(sqlQuerry("select nom from representation where representation.id="+(i+1)).getString(1));
+			beanRepresentation.setPrix(sqlQuerry("select prix from representation where representation.id="+(i+1)).getInt(1));
+			beanRepresentation.setSalle(sqlQuerry("select salle from representation where representation.id="+(i+1)).getString(1));
+			beanRepresentation.setDate(sqlQuerry("select date from representation where representation.id="+(i+1)).getString(1));
+			listeRepresentations.add(beanRepresentation);
+		}
+		
+		
+		
+//		//Instanciation du Bean
+//		beanRepresentation = new BeanRepresentation();
+//
+//		//Création du Bean
+//		beanRepresentation.setId(2);
+//		beanRepresentation.setBilletsDispo(162);
+//		beanRepresentation.setNomSpectacle("Georges St-Pierre");
+//		beanRepresentation.setPrix(100);
+//		beanRepresentation.setSalle("Bruno Payette Est");
+//		beanRepresentation.setDate("23 Juin 2013");
+//
+//		//on ajoute le bean à la liste	
+//		listeRepresentations.add(beanRepresentation);
 
 		//***----------------------------*******
 		//      Exemple comment accéder a la bd
 		//***----------------------------*******
 		
-//		resultatBD = sqlQuerry("SELECT Spectacles.Nom FROM Spectacles WHERE Spectacles.Id_Spectacle = 1");
+//		resultatBD = sqlQuerry("SELECT Spectacles.Nom FROM Spectacles DSWHERE Spectacles.Id_Spectacle = 1");
 //		System.out.println("TRACE" + resultatBD.getString(1));   
 		
-		try
-		 {
-			
-				String fName;
-	            while(resultatBD.next())
-	            {
-	                fName = resultatBD.getString(1);
-	                
-	                System.out.println("2222 BD ***********/////////-:" + fName);
-	            }
-	        }
-	        catch(Exception e)
-	        {
-	            System.out.println("Error processing results: " + e.toString());
-	        }   
+//		try
+//		 {
+//			
+//				String fName;
+//	            while(resultatBD.next())
+//	            {
+//	                fName = resultatBD.getString(1);
+//	                
+//	                System.out.println("2222 BD ***********/////////-:" + fName);
+//	            }
+//	        }
+//	        catch(Exception e)
+//	        {
+//	            System.out.println("Error processing results: " + e.toString());
+//	        }   
 		
 		//******************************************
 		//****---------------Fin Example-----------
