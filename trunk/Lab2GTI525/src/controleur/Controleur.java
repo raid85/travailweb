@@ -6,29 +6,41 @@
  */
 package controleur;
 
+import gti525.paiement.InformationsPaiementTO;
+import gti525.paiement.ReponseSystemePaiementTO;
+
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modele.BeanClient;
 import modele.BeanSpectacle;
 import modele.BeanRepresentation;
 import modele.DelegateSpectacles;
+import modele.PaiementDAO;
 import modele.Panier;
 
 
 
 
 public class Controleur {
-
-	private static final long serialVersionUID = 2579846315782156987L;
-
+	
+	private static final int stubStoreID = 1234 ;
+	private static final String stubApiKey = "1234abcd1234abcd";
+	
 	//methode qui gère l'application web 
 	public String doHandle(HttpServletRequest request, HttpServletResponse response){		
 
 		DelegateSpectacles myDelegate = null;
 		Panier panier = null;
+
+		//Instanciation des objets qui serviront a authoriser un paiement pour le client
+		InformationsPaiementTO infosClient = new InformationsPaiementTO () ;
+		PaiementDAO payerDAO = new PaiementDAO () ;
+		
 		//on va envoyer les spectacles à la session
 
 		//Premier load de la page
@@ -144,6 +156,76 @@ public class Controleur {
 
 		//vers page de confirmation d'achat
 		else if (request.getParameter("action").equals("preAuthorisation")){
+	
+			Panier unPanier = (Panier) request.getSession().getAttribute("panier");
+			BeanClient client = new BeanClient();
+	
+			//on obtient nos valeurs du formulaire d'achat du client
+			//ensuite on construit notre objet client avec ces parametres
+			client.setAddrClient(request.getParameter("adresse"));
+			client.setAnExpClient(request.getParameter("anExp"));
+			client.setCvvClient(request.getParameter("cvv"));
+			client.setEmailClient(request.getParameter("emailClient"));
+			client.setMoisExpClient(request.getParameter("moisExp"));
+			client.setNomClient(request.getParameter("nomClient"));
+			client.setNrCarteClient(request.getParameter("nrCarte"));
+			client.setPaysClient(request.getParameter("pays"));
+			client.setPrenomClient(request.getParameter("prenomClient"));	
+			client.setProvClient(request.getParameter("prov"));
+			client.setVilleClient(request.getParameter("ville"));
+			client.setCodePostal(request.getParameter("codep"));
+			
+			System.out.println("----------Objet Client------------");
+			System.out.println("Nom:" + client.getNomClient());
+			System.out.println("Prenom:" + client.getPrenomClient());
+			System.out.println("Numero Carte:" + client.getNrCarteClient());
+			System.out.println("Annee exp:" + client.getAnExpClient());
+			System.out.println("Mois Exp:" + client.getMoisExpClient());
+			System.out.println("Cvv:" + client.getCvvClient());
+			System.out.println("Ville:" + client.getVilleClient());
+			System.out.println("Pays:" + client.getPaysClient());
+			System.out.println("Adresse:" + client.getAddrClient());
+			System.out.println("CodeP:" + client.getCodePostal());
+		
+			//on set l'attribut de la session client
+			request.getSession().setAttribute("Client",client);	
+
+	
+			//On remplit l'objet InformationsPaiementTO requis par le service de transactions			
+			infosClient.setApi_key(stubApiKey);					
+			infosClient.setStore_id(stubStoreID);
+			infosClient.setOrder_id((long) ((Math.random()*100)));	
+			infosClient.setFirst_name(client.getPrenomClient());
+			infosClient.setLast_name(client.getNomClient());
+			infosClient.setCard_number(Long.valueOf(client.getNrCarteClient()));
+			infosClient.setSecurity_code(Integer.valueOf(client.getCvvClient()));
+			infosClient.setYear(Integer.valueOf(client.getAnExpClient()));
+			infosClient.setMonth(Integer.valueOf(client.getMoisExpClient()));
+			infosClient.setAmount(BigDecimal.valueOf(unPanier.getTotal()));
+		
+			
+			System.out.println("----------InformationsPaiementTo Client------------");
+			System.out.println("Api_Key:" + infosClient.getApi_key());
+			System.out.println("StoreId:" + infosClient.getStore_id());
+			System.out.println("Prenom:" + infosClient.getFirst_name());
+			System.out.println("Nom:" + infosClient.getLast_name());
+			System.out.println("Numero Carte:" + infosClient.getCard_number());
+			System.out.println("Cvv:" + infosClient.getSecurity_code());
+			System.out.println("Annee:" + infosClient.getYear());
+			System.out.println("Mois:" + infosClient.getMonth());
+			System.out.println("Prix:" + infosClient.getAmount());
+		
+			
+			ReponseSystemePaiementTO reponsePre = new ReponseSystemePaiementTO ();
+			System.out.println("----------Preauthorisation en cours------------");
+			reponsePre = payerDAO.effectuerPreauthorisation(infosClient);			
+		
+			
+			request.getSession().setAttribute("transactionId", reponsePre.getTransactionId());
+			request.getSession().setAttribute("reponseCode",reponsePre.getCode());
+			
+			System.out.println("transaction Id:" + reponsePre.getTransactionId());
+			System.out.println("transaction code:" + reponsePre.getCode());
 
 			System.out.println("TRACE Controleur: Btn preAuthorisation clicked");
 
