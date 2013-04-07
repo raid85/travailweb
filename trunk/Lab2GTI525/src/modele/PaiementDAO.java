@@ -19,6 +19,7 @@ public class PaiementDAO implements IPaiementDAO{
 	public ReponseSystemePaiementTO approuverTransaction(RequeteAuthorisationTO requeteAutorisationTO) {
 		ReponseSystemePaiementTO reponse = new ReponseSystemePaiementTO();
         URL url = null;
+        
         reponse.setMessage("Passed");//pour tester le reste
        
 		return reponse;	
