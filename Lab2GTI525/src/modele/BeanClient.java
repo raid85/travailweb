@@ -14,6 +14,15 @@ public class BeanClient {
 	private String moisExpClient ;
 	private String anExpClient ;
 	private String nrCarteClient;
+	private String codePostal;
+	
+	
+	public String getCodePostal() {
+		return codePostal;
+	}
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
 	public String getNomClient() {
 		return nomClient;
 	}

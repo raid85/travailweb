@@ -44,9 +44,7 @@ function AskAndSubmit(t)
 	var moisExp = document.form.moisExp;
 	var anExp = document.form.anExp;
 	var cvv = document.form.cvv;
-	var nrRue = document.form.nrRue;
-	var appart = document.form.appart;
-	var nomRue = document.form.nomRue;
+	var adresse = document.form.adresse;
 	var ville = document.form.ville;
 	var prov = document.form.prov;
 	var pays = document.form.pays;
@@ -87,14 +85,9 @@ function AskAndSubmit(t)
 		cvv.focus();
 		return false;
 	}
-	if ((nrRue.value == "") || (nrRue.value == null)) {
-		alert("Veuillez inscrire le numero de rue de l'adresse du titulaire de la carte de crédit")
-		nrRue.focus();
-		return false;
-	}
-	if ((nomRue.value == "") || (nomRue.value == null)) {
+	if ((adresse.value == "") || (adresse.value == null)) {
 		alert("Veuillez inscrire un nom de rue")
-		nomRue.focus();
+		adresse.focus();
 		return false;
 	}
 	if ((ville.value == "") || (ville.value == null)) {
@@ -194,7 +187,7 @@ ddsmoothmenu.init({
                         <div class="cleaner h10"></div>
                          <label for="author">Courriel:</label> <input type="text" name="emailClient" class="required input_field" value="bernardlagrais@Domaine.com"/>
                         <div class="cleaner h10"></div>
-                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCarte" class="validate-email required input_field" value="1234-5678-9012-3456" />
+                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCarte" class="validate-email required input_field" value="1234567890123456" />
                         <div class="cleaner h10"></div>
                         
 						<label for="moisExp">Mois d'expiration</label><input type="text" name="moisExp" value="10" class="required input_field" />
@@ -208,14 +201,9 @@ ddsmoothmenu.init({
 			 <h4>Informations livraison</h4>
         	
                         
-						<label for="subject">Numero rue:</label> <input type="text" name="nrRue" class="input_field" value="2100"/>
-
-     					<label for="subject">Numero appartement:</label> <input type="text" name="appart" class="validate-email required input_field" value="75"/>
-                        <div class="cleaner h10"></div>
-
-						<div class="cleaner h10"></div>
 						
-						<label for="subject">Nom de rue:</label> <input type="text" name="nomRue" class="input_field" value="Saint-Urbain" />
+						
+						<label for="subject">Adresse</label> <input type="text" name="adresse" class="input_field" value="Saint-Urbain" />
 						
 						<div class="cleaner h10"></div>
 						
