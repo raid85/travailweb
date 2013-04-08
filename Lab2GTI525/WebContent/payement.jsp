@@ -187,7 +187,7 @@ ddsmoothmenu.init({
                         <div class="cleaner h10"></div>
                          <label for="author">Courriel:</label> <input type="text" name="emailClient" class="required input_field" value="bernardlagrais@Domaine.com"/>
                         <div class="cleaner h10"></div>
-                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCarte" class="validate-email required input_field" value="1234567890123456" />
+                        <label for="nrCarte">Numero de carte de credit</label> <input type="text"  name="nrCarte" class="validate-email required input_field" value="8675309000000000" />
                         <div class="cleaner h10"></div>
                         
 						<label for="moisExp">Mois d'expiration</label><input type="text" name="moisExp" value="10" class="required input_field" />
