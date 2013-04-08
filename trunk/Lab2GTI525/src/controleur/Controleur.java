@@ -29,7 +29,7 @@ import modele.Panier;
 public class Controleur {
 	
 	private static final int stubStoreID = 1234 ;
-	private static final String stubApiKey = "1234abcd1234abcd";
+	private static final String stubApiKey = "f0d19ab1af1963ad1a73";
 	
 	//methode qui gère l'application web 
 	public String doHandle(HttpServletRequest request, HttpServletResponse response){		
