@@ -162,15 +162,15 @@ public class Controleur {
 	
 			//on obtient nos valeurs du formulaire d'achat du client
 			//ensuite on construit notre objet client avec ces parametres
-			client.setAddrClient(request.getParameter("adresse"));
-			client.setAnExpClient(request.getParameter("anExp"));
-			client.setCvvClient(request.getParameter("cvv"));
-			client.setEmailClient(request.getParameter("emailClient"));
-			client.setMoisExpClient(request.getParameter("moisExp"));
 			client.setNomClient(request.getParameter("nomClient"));
+			client.setPrenomClient(request.getParameter("prenomClient"));
+			client.setAddrClient(request.getParameter("adresse"));
+			client.setEmailClient(request.getParameter("emailClient"));
 			client.setNrCarteClient(request.getParameter("nrCarte"));
+			client.setCvvClient(request.getParameter("cvv"));
+			client.setMoisExpClient(request.getParameter("moisExp"));
+			client.setAnExpClient(request.getParameter("anExp"));
 			client.setPaysClient(request.getParameter("pays"));
-			client.setPrenomClient(request.getParameter("prenomClient"));	
 			client.setProvClient(request.getParameter("prov"));
 			client.setVilleClient(request.getParameter("ville"));
 			client.setCodePostal(request.getParameter("codep"));
