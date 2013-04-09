@@ -51,13 +51,10 @@ public class SpectacleDAO {
 			stmt.close();
 			resSet = stmt.executeQuery(sqlRequest);
 			return 	resSet;
-		}catch(SQLException sqlE){ sqlE.printStackTrace();}
-		catch(ClassNotFoundException cE){cE.printStackTrace();}
-		try {
-			System.out.println(resSet.getObject(1));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}catch(SQLException sqlE){ 
+			sqlE.printStackTrace();
+		}catch(ClassNotFoundException cE){
+			cE.printStackTrace();
 		}
 
 		return 	resSet;
@@ -75,8 +72,10 @@ public class SpectacleDAO {
 
 
 		for (int j=1; j<=sqlQuerry("select count (*) from spectacle").getInt(1); j++){
+
 			String spec=sqlQuerry("select nom from spectacle where id="+j).getString(1);
 			resultatBD =sqlQuerry("select id from representation where representation.nom like '"+spec+"'");
+
 			while(resultatBD.next()){
 
 				int idREP=resultatBD.getInt(1);
@@ -90,6 +89,7 @@ public class SpectacleDAO {
 				beanRepresentation.setDate(sqlQuerry("select date from representation where representation.id="+idREP).getString(1));
 				listeRepresentations.add(beanRepresentation);
 			}
+
 			beanSpectacle = new BeanSpectacle();
 			beanSpectacle.setId(sqlQuerry("select id from spectacle where spectacle.id="+j).getInt(1));
 			beanSpectacle.setNom(sqlQuerry("select nom from spectacle where spectacle.id="+j).getString(1));
