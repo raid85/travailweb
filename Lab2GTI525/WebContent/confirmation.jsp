@@ -9,6 +9,7 @@
 <%
 ArrayList<BeanSpectacle> spectacles = (ArrayList<BeanSpectacle>)request.getSession().getAttribute("spectacles");
 Panier panier  = (Panier)request.getSession().getAttribute("panier");
+int nrConfirmation = Integer.valueOf(request.getSession().getAttribute("transactionId").toString()); 
 
 %>
 
@@ -102,7 +103,7 @@ ddsmoothmenu.init({
 <div id="templatemo_main">
 		<h3>Achat complete avec succes</h3>
 		<br><h4>Numero de confirmation:</h4>
-		<h4><p id="paragraph"></p></h4>
+		<h4><p><%=nrConfirmation%> </p></h4>
 		
 	<div class="urbangreymenu">
  <% for (int i=0; i<panier.getPanier().length;i++){;%>
