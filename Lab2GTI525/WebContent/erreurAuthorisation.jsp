@@ -9,7 +9,8 @@
 <body>
  		<center>
 		<p>
-           <b>UNE ERREUR FATALE EST SURVENUE!!!!</b>
+           <b>UNE ERREUR FATALE EST SURVENUE!!!!<br>
+           LORS DE VOTRE AUTHORISATION DE CARTE DE CREDIT</b>
         </p>
         </center>
 </body>

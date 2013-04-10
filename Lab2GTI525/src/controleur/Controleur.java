@@ -156,7 +156,8 @@ public class Controleur {
 
 		//vers page de confirmation d'achat
 		else if (request.getParameter("action").equals("preAuthorisation")){
-	
+			
+			System.out.println("TRACE Controleur: Btn preAuthorisation clicked");
 			Panier unPanier = (Panier) request.getSession().getAttribute("panier");
 			BeanClient client = new BeanClient();
 	
@@ -218,24 +219,32 @@ public class Controleur {
 			
 			ReponseSystemePaiementTO reponsePre = new ReponseSystemePaiementTO ();
 			System.out.println("----------Preauthorisation en cours------------");
+			//on préauthorise les informations du client
 			reponsePre = payerDAO.effectuerPreauthorisation(infosClient);			
-		
-			
-			request.getSession().setAttribute("transactionId", reponsePre.getTransactionId());
-			request.getSession().setAttribute("reponseCode",reponsePre.getCode());
-			
 			System.out.println("transaction Id:" + reponsePre.getTransactionId());
 			System.out.println("transaction code:" + reponsePre.getCode());
-
-			System.out.println("TRACE Controleur: Btn preAuthorisation clicked");
+			//On envoie les paramètres à la session pour les garder en buffer
+			//pour ensuite pouvoir confirmer le payement
+			request.getSession().setAttribute("reponseCode",reponsePre.getCode());
+			request.getSession().setAttribute("transactionId", reponsePre.getTransactionId());
+					
 
 			return "confPayement.jsp";}
 		//si l'achat est confirmé on redirige vers la page de confirmation
 		else if (request.getParameter("action").equals("achatConfirme")){
 
 			System.out.println("TRACE Controleur: Btn achatConfirme clicked");
+			
+			//on vérifie si la carte a été préauthorisée ou non
+			int codeAuthorisation = (int) request.getSession().getAttribute("reponseCode");
+			int idTransation = (int) request.getSession().getAttribute("transactionId");
+			
+			if (codeAuthorisation == 10200){
+				
+				return "confirmation.jsp";
+			}else
 
-			return "confirmation.jsp";}
+			return "erreurAuthorisation.jsp";}
 		//Si le bouton Ajax ajouterBillet a été poussé
 		else if (request.getParameter("action").equals("ajouterBillet")){
 
