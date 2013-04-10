@@ -314,7 +314,7 @@ public class Controleur {
 			Panier lePanier = (Panier)request.getSession().getAttribute("panier");
 			
 			//on itere dans le panier achete et on rentre les informations de la facture
-			//dans la bd pour garder des traces.
+			//dans la bd pour garder des traces des transactions client.
 			for(int i=0;i<panier.getPanier().length;i++){
 				
 				String nomSpectacle = panier.getItemAchete(i).getRep().getNomSpectacle();
@@ -338,10 +338,11 @@ public class Controleur {
 
 			//On Vide le panier pour une autre transaction et on retourne a l'accueil
 			Panier myPanier = new Panier();
-			
 			request.getSession().setAttribute("panier",myPanier);	
 
-			return "index.jsp";}
+			return "index.jsp"
+					
+					;}
 		//si on désire annuler l'achat
 		else if (request.getParameter("action").equals("annuler")){
 
