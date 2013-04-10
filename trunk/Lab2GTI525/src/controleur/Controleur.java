@@ -223,13 +223,20 @@ public class Controleur {
 			reponsePre = payerDAO.effectuerPreauthorisation(infosClient);			
 			System.out.println("transaction Id:" + reponsePre.getTransactionId());
 			System.out.println("transaction code:" + reponsePre.getCode());
-			//On envoie les paramètres à la session pour les garder en buffer
-			//pour ensuite pouvoir confirmer le payement
-			request.getSession().setAttribute("reponseCode",reponsePre.getCode());
-			request.getSession().setAttribute("transactionId", reponsePre.getTransactionId());
-					
+			
+			if (reponsePre.getCode() == 10200){
+				
+				//On envoie les paramètres à la session pour les garder en buffer
+				//pour ensuite pouvoir confirmer le payement
+				request.getSession().setAttribute("reponseCode",reponsePre.getCode());
+				request.getSession().setAttribute("transactionId", reponsePre.getTransactionId());
+				
+				return "confPayement.jsp";
+			}else
 
-			return "confPayement.jsp";}
+
+			return "erreurAuthorisation.jsp";
+			}
 		//si l'achat est confirmé on redirige vers la page de confirmation
 		else if (request.getParameter("action").equals("achatConfirme")){
 
@@ -240,6 +247,8 @@ public class Controleur {
 			int idTransation = (int) request.getSession().getAttribute("transactionId");
 			
 			if (codeAuthorisation == 10200){
+				
+				
 				
 				return "confirmation.jsp";
 			}else
@@ -295,6 +304,37 @@ public class Controleur {
 		else if (request.getParameter("action").equals("revenirAccueil")){
 
 			System.out.println("TRACE Controleur: Btn revenir a laccueil");
+			
+			//-----------------Entrer la transaction dans la BD------------------------
+			
+			
+			//doit avoir cree table IdTransactions avec une foreign key vers table Billets
+			//pour un idTransation on va possiblement avoir plusieurs spectacles diff/rents.
+			int idTransation = (int) request.getSession().getAttribute("transactionId");
+			Panier lePanier = (Panier)request.getSession().getAttribute("panier");
+			
+			//on itere dans le panier achete et on rentre les informations de la facture
+			//dans la bd pour garder des traces.
+			for(int i=0;i<panier.getPanier().length;i++){
+				
+				String nomSpectacle = panier.getItemAchete(i).getRep().getNomSpectacle();
+				String dateSpectacle = panier.getItemAchete(i).getRep().getDate();
+				String salleSpectacle = panier.getItemAchete(i).getRep().getSalle();
+				int nbBillets = (int)panier.getItemAchete(i).getNbBillets();
+				int totalFacture = (int)panier.getTotal();
+							
+				//inserer dans BD dans table IDTransaction le idTransaction
+				//inserer dans BD dans table BilletsAchete sur une ligne avec foreign Key le idTransaction
+				//inserer dans BD dans table BilletsAchete le nomSpectacle
+				//inserer dans BD dans table BilletsAchete le dateSpectacle
+				//inserer dans BD dans table BilletsAchete le salleSpectacle
+				//inserer dans BD dans table BilletsAchete le nbBillets
+				//inserer dans BD dans table BilletsAchete le totalFacture
+									
+			}
+			
+			
+			//------------------------------------------------------------------------
 
 			//On Vide le panier pour une autre transaction et on retourne a l'accueil
 			Panier myPanier = new Panier();
