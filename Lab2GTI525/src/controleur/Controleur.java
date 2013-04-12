@@ -30,24 +30,24 @@ public class Controleur {
 	
 	private static final int stubStoreID = 1234 ;
 	private static final String stubApiKey = "f0d19ab1af1963ad1a73";
-	
+	private DelegateSpectacles myDelegate = new DelegateSpectacles();
 	//methode qui gère l'application web 
 	public String doHandle(HttpServletRequest request, HttpServletResponse response){		
 
-		DelegateSpectacles myDelegate = null;
+//		DelegateSpectacles myDelegate = null;/
 		Panier panier = null;
 
 		//Instanciation des objets qui serviront a authoriser un paiement pour le client
 		InformationsPaiementTO infosClient = new InformationsPaiementTO () ;
 		PaiementDAO payerDAO = new PaiementDAO () ;
-		
+//		myDelegate = new DelegateSpectacles();
 		//on va envoyer les spectacles à la session
 
 		//Premier load de la page
 		if (request.getParameterMap().size() < 1){	
 
 
-			myDelegate = new DelegateSpectacles();
+			
 			try {
 				System.out.println(myDelegate.getSpectacles().get(0).getNom());
 			} catch (ClassNotFoundException | SQLException e) {
@@ -75,7 +75,13 @@ public class Controleur {
 
 
 			System.out.println("TRACE Controleur: Btn Rechercher Spectacles clicked");
-
+			
+			try {
+				request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			//on redirige jsp populé
 			return "spectacles.jsp";
@@ -114,7 +120,7 @@ public class Controleur {
 			//int totalBillets=Integer.valueOf(request.getParameter("totalBillets").toString());
 
 			//On va chercher les stub spectacle à l'aide du patron delegate
-			myDelegate = new DelegateSpectacles();
+//			myDelegate = new DelegateSpectacles();
 			//Ici on ajuste le nombre total de billets disponibles suite à une reservation
 			//myDelegate.getSpectacles().get(posSpectacle).getListeRepresentations().get(posRepresentation).setBilletsDispo(totalBillets - Integer.valueOf(nbBilletsReserve.toString()));	
 			try {
