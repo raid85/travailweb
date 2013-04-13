@@ -311,7 +311,7 @@ public class Controleur {
 
 			System.out.println("TRACE Controleur: Btn revenir a laccueil");
 			
-			//-----------------Entrer la transaction dans la BD------------------------
+			//-----------------Entrer la transaction dans la BD pour Hani------------------------
 			
 			
 			//doit avoir cree table IdTransactions avec une foreign key vers table Billets
@@ -346,8 +346,7 @@ public class Controleur {
 			Panier myPanier = new Panier();
 			request.getSession().setAttribute("panier",myPanier);	
 
-			return "index.jsp"
-					
+			return "index.jsp"			
 					;}
 		//si on désire annuler l'achat
 		else if (request.getParameter("action").equals("annuler")){
