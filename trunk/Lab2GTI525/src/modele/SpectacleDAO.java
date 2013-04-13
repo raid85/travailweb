@@ -138,6 +138,10 @@ public class SpectacleDAO {
 			//quand on termine le chargement des données de la BD, il n'est plus nécessaire
 			//d'y accéder et de recharger le tout à moins d'un changement.
 			changement=false;
+			
+			//met a jour la copie courante pour vérification ultérieure
+			spectacles=sqlQuerry("select * from spectacle");
+			representations=sqlQuerry("select * from representation");
 		}
 
 		//		//Instanciation du Bean
