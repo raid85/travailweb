@@ -20,7 +20,7 @@ public class FrontControlerServlet  extends HttpServlet {
 	 a ete fermee. 
 	 */
 	private static final long serialVersionUID = -8956587436876458937L;
-	Controleur controleur = new Controleur();;
+	Controleur controleur;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Redirige afin de centraliser les requêtes
@@ -39,7 +39,7 @@ public class FrontControlerServlet  extends HttpServlet {
 	 */
 	protected void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Redirige au contrôleur de messages. Dans un Front Controller normal, il pourrait y avoir plusieurs servlets!
-//		controleur = new Controleur();
+		controleur = new Controleur();
 		String resultPage = controleur.doHandle(request, response);
 		redirect(request, response, resultPage);
 	}
