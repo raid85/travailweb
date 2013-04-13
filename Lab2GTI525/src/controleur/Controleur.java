@@ -27,7 +27,7 @@ import modele.Panier;
 
 
 public class Controleur {
-	
+	//ALLO
 	private static final int stubStoreID = 1234 ;
 	private static final String stubApiKey = "f0d19ab1af1963ad1a73";
 	private DelegateSpectacles myDelegate = new DelegateSpectacles();
