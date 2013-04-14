@@ -315,7 +315,7 @@ public class Controleur {
 			
 			
 			//doit avoir cree table IdTransactions avec une foreign key vers table Billets
-			//pour un idTransation on va possiblement avoir plusieurs spectacles diff/rents.
+			//pour un idTransation on va possiblement avoir plusieurs items achetes (spectacles differents.)
 //			int idTransation = (int) request.getSession().getAttribute("transactionId");
 //			Panier lePanier = (Panier)request.getSession().getAttribute("panier");
 //			
