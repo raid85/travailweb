@@ -314,8 +314,8 @@ public class Controleur {
 			//-----------------Entrer la transaction dans la BD pour Hani------------------------
 			
 			
-			//doit avoir cree table IdTransactions avec une foreign key vers table Billets
-			//pour un idTransation on va possiblement avoir plusieurs items achetes (spectacles differents.)
+			//doit avoir cree table Factures avec une foreign key vers table ItemsFacture
+			//pour une Facture on va possiblement avoir plusieurs items achetes (spectacles differents.)
 //			int idTransation = (int) request.getSession().getAttribute("transactionId");
 //			Panier lePanier = (Panier)request.getSession().getAttribute("panier");
 //			
@@ -329,13 +329,13 @@ public class Controleur {
 //				int nbBillets = (int)panier.getItemAchete(i).getNbBillets();
 //				int totalFacture = (int)panier.getTotal();
 //							
-//				//inserer dans BD dans table IDTransaction le idTransaction
-//				//inserer dans BD dans table BilletsAchete sur une ligne avec foreign Key le idTransaction
-//				//inserer dans BD dans table BilletsAchete le nomSpectacle
-//				//inserer dans BD dans table BilletsAchete le dateSpectacle
-//				//inserer dans BD dans table BilletsAchete le salleSpectacle
-//				//inserer dans BD dans table BilletsAchete le nbBillets
-//				//inserer dans BD dans table BilletsAchete le totalFacture
+//				//inserer dans BD dans table Factures le idTransaction
+//				//inserer dans BD dans table ItemsFacture sur une ligne avec foreign Key le idTransaction
+//				//inserer dans BD dans table ItemsFacture le nomSpectacle
+//				//inserer dans BD dans table ItemsFacture le dateSpectacle
+//				//inserer dans BD dans table ItemsFacture le salleSpectacle
+//				//inserer dans BD dans table ItemsFacture le nbBillets
+//				//inserer dans BD dans table ItemsFacture le totalFacture
 //									
 //			}
 			
