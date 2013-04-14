@@ -343,11 +343,11 @@ public class Controleur {
 			//------------------------------------------------------------------------
 
 			//On Vide le panier pour une autre transaction et on retourne a l'accueil
+			System.out.println("TRACE Controleur: avant panier");
 			Panier myPanier = new Panier();
 			request.getSession().setAttribute("panier",myPanier);	
-
-			return "index.jsp"			
-					;}
+			System.out.println("TRACE Controleur: apres panier");
+			return "index.jsp";}
 		//si on désire annuler l'achat
 		else if (request.getParameter("action").equals("annuler")){
 
