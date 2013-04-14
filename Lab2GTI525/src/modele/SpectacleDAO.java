@@ -10,7 +10,7 @@ public class SpectacleDAO {
 
 
 	boolean changement=true;
-	//FIXME: Ceci devrait [etre fourni dans un config file et no pas harcode
+	
 	public static final String driver = "org.sqlite.JDBC";
 	//adresse de la bd locale
 	private static String url = "jdbc:sqlite:C:/bd.sqlite";
