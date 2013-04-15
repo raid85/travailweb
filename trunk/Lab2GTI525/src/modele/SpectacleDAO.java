@@ -313,6 +313,31 @@ public class SpectacleDAO {
 		write("insert into facture(nom,date,salle,vendus,total,noTransaction) values ('"+nomSpectacle+"','"+dateSpectacle+"','"+salleSpectacle+"',"+nbBillets+","+totalFacture+","+idTransation+")");
 		
 	}
+	
+	public void updateDB() throws SQLException{
+		
+		//si table facture est pas vide
+		if(sqlQuerry("select * from facture")!=null){
+			
+			//au nombre de représentation qu'il y a dans la BD
+			for (int i=0;i<sqlQuerry("select count (*) from representation").getInt(1);i++){
+				
+				//prendre les factures de cette représentation
+				String nom = sqlQuerry("select nom from representation where id="+i).getString(1);
+				String date =sqlQuerry("select date from representation where id="+i).getString(1);
+				String salle =sqlQuerry("select salle from representation where id="+i).getString(1);
+				ResultSet rs = sqlQuerry("select * from facture where facture.nom like '"+nom+"' and facture.date like '"+date+"' and facture.salle like '"+salle+"'");
+				
+				//et mettre a jour le nombre de billets restant pour cette représentation
+				while(rs.next()){
+					int idFactActuelle=rs.getInt(7);
+					int nbBillets=sqlQuerry("select billets from representation where id="+i).getInt(1) - sqlQuerry("select vendus from facture where id="+idFactActuelle).getInt(1);
+					//update le nombre de billets
+					write("update representation set billets="+nbBillets+" where id="+i);
+				}
+			}
+		}
+	}
 
 	private int getNbSpectacles() throws SQLException{
 		return sqlQuerry("select count (*) from spectacle").getInt(1);
