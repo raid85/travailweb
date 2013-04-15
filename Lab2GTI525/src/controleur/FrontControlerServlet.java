@@ -14,7 +14,7 @@ import javax.servlet.http.*;
 
 
 public class FrontControlerServlet  extends HttpServlet {
-	
+	Controleur controleur = new Controleur();
 	/**
 	 On serialise le servlet pour pouvoir revenir dans une session une fois que celle-ci
 	 a ete fermee. 
@@ -39,7 +39,7 @@ public class FrontControlerServlet  extends HttpServlet {
 	 */
 	protected void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		//Redirige au contrôleur de messages. Dans un Front Controller normal, il pourrait y avoir plusieurs servlets!
-		Controleur controleur = new Controleur();
+		
 		String resultPage = controleur.doHandle(request, response);
 		redirect(request, response, resultPage);
 	}
