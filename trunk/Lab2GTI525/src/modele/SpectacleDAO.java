@@ -8,14 +8,13 @@ import java.sql.*;
 
 public class SpectacleDAO {
 
-
 	boolean changement=true;
 	
 	public static final String driver = "org.sqlite.JDBC";
 	//adresse de la bd locale
-	private static String url = "jdbc:sqlite:C:/bd.sqlite";
+	//private static String url = "jdbc:sqlite:C:/bd.sqlite";
 	//private static String url = "jdbc:sqlite:F:/EclipseWorkspace/Lab2GTI525/BD/bd.sqlite";
-	//private static String url = "jdbc:sqlite:C:/Users/Hani/workspace/Lab2GTI525/BD/bd.sqlite";
+	private static String url = "jdbc:sqlite:C:/Users/Hani/workspace/Lab2GTI525/BD/bd.sqlite";
 	private static ResultSet resultatBD;
 
 	private BeanSpectacle beanSpectacle;
@@ -38,41 +37,88 @@ public class SpectacleDAO {
 
 	//Retourne le resultat d<une requ[ete de type sqllite
 	//Ouvre l'acces a la bd locale.
-	private static ResultSet sqlQuerry(String sqlRequest){
-		Connection con = null;
-		ResultSet resSet = null;
-
-		try{
-			//Load the JDBC driver class dynamically.
-			Class.forName(driver);
-			//System.out.println("Driver Enregistre");
-			con = DriverManager.getConnection(url);
-			//System.out.println("Connection etablie");
-			Statement stmt = con.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY,ResultSet.CLOSE_CURSORS_AT_COMMIT);
-			stmt.close();
-			resSet = stmt.executeQuery(sqlRequest);
-//			resSet.close();
-			
-			return 	resSet;
-			
-		}catch(SQLException sqlE){ 
-			sqlE.printStackTrace();
-		}catch(ClassNotFoundException cE){
-			cE.printStackTrace();
-		}
+	private ResultSet sqlQuerry(String sqlRequest){
+//		Connection con = null;
+//		ResultSet resSet = null;
+//
+//		try{
+//			//Load the JDBC driver class dynamically.
+//			Class.forName(driver);
+//			//System.out.println("Driver Enregistre");
+//			con = DriverManager.getConnection(url);
+//			//System.out.println("Connection etablie");
+//			Statement stmt = con.createStatement();
+////			stmt.close();
+//			resSet = stmt.executeQuery(sqlRequest);
+////			resSet.close();
+//			return 	resSet;
+//			
+//		}catch(SQLException sqlE){ 
+//			sqlE.printStackTrace();
+//		}catch(ClassNotFoundException cE){
+//			cE.printStackTrace();
+//		}
+//		try {
+//			con.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return 	resSet;
+		ResultSet rs = null;
+		DbClass db = new DbClass();
 		try {
-			con.close();
+			rs = db.executeQuery(sqlRequest);
+			return rs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 	resSet;
-
+		db.closeConnection();
+		return rs;
+	}
+	
+	private void write(String request){
+		
+//		Connection con = null;
+//		try{
+//			//Load the JDBC driver class dynamically.
+//			Class.forName(driver);
+//			//System.out.println("Driver Enregistre");
+//			con = DriverManager.getConnection(url);
+//			//System.out.println("Connection etablie");
+//			Statement stmt = con.createStatement();
+//			stmt.close();
+//			stmt.executeUpdate(request);
+////			resSet.close();
+//			
+//		}catch(SQLException sqlE){ 
+//			sqlE.printStackTrace();
+//		}catch(ClassNotFoundException cE){
+//			cE.printStackTrace();
+//		}
+//		try {
+//			con.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		DbClass db = new DbClass();
+		try {
+			Thread.sleep(100);
+			db.execute(request);
+		} catch (SQLException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db.closeConnection();
+		
 	}
 
 	//on garde une copie des tables pour en faire une comparaison plus tard
 	ResultSet spectacles=sqlQuerry("select * from spectacle");
 	ResultSet representations=sqlQuerry("select * from representation");
+	ResultSet factures=sqlQuerry("select * from facture");
 
 	//classe qui s'occupe de populer la liste de spectacle dans leur liste respectives
 	//de spectacles et représentations
@@ -87,6 +133,16 @@ public class SpectacleDAO {
 		if(!representations.getObject(1).equals(sqlQuerry("select * from representation").getObject(1))){
 			changement=true;
 			System.out.println("CHANGEMENT DE REPRESENTATIONS MIS À FALSE");
+		}
+		
+		try {
+			if(!factures.getObject(1).equals(sqlQuerry("select * from facture").getObject(1))){
+				changement=true;
+				System.out.println("CHANGEMENT DE FACTURES MIS À FALSE");
+			}
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			System.out.println("DB: Factures vide.");
 		}
 		
 		System.out.println("PREMIER ACCÈS");
@@ -110,6 +166,8 @@ public class SpectacleDAO {
 
 				//tant qu'il y a des représentation du même nom que le spectacle actuel
 				while(resultatBD.next()){
+					
+					
 					
 					//remplir les beans et l'ajouter à la liste des représentation
 					int idREP=resultatBD.getInt(1);
@@ -143,6 +201,7 @@ public class SpectacleDAO {
 			//met a jour la copie courante pour vérification ultérieure
 			spectacles=sqlQuerry("select * from spectacle");
 			representations=sqlQuerry("select * from representation");
+			factures=sqlQuerry("select * from facture");
 		}
 
 		//		//Instanciation du Bean
@@ -247,6 +306,12 @@ public class SpectacleDAO {
 
 		System.out.println("TRACE SpectacleDAO: " + "Liste Spectacles a été populée");
 
+	}
+	
+	public void ajouterFacture(int idTransation, String nomSpectacle, String dateSpectacle, String salleSpectacle, int nbBillets, int totalFacture){
+		//insert into facture(nom,date,salle,vendus,total,noTransaction) values ('hello','hello','hello',34,55,2345)
+		write("insert into facture(nom,date,salle,vendus,total,noTransaction) values ('"+nomSpectacle+"','"+dateSpectacle+"','"+salleSpectacle+"',"+nbBillets+","+totalFacture+","+idTransation+")");
+		
 	}
 
 	private int getNbSpectacles() throws SQLException{

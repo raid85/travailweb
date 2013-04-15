@@ -20,6 +20,9 @@ public class DelegateSpectacles {
 	
 	}
 	
+	public void ajouterFacture(int idTransation, String nomSpectacle, String dateSpectacle, String salleSpectacle, int nbBillets, int totalFacture){
+		daoSpectacle.ajouterFacture(idTransation, nomSpectacle, dateSpectacle, salleSpectacle, nbBillets, totalFacture);
+	}
 	
 	
 }

@@ -316,28 +316,28 @@ public class Controleur {
 			
 			//doit avoir cree table Factures avec une foreign key vers table ItemsFacture
 			//pour une Facture on va possiblement avoir plusieurs items achetes (spectacles differents.)
-//			int idTransation = (int) request.getSession().getAttribute("transactionId");
-//			Panier lePanier = (Panier)request.getSession().getAttribute("panier");
-//			
-//			//on itere dans le panier achete et on rentre les informations de la facture
-//			//dans la bd pour garder des traces des transactions client.
-//			for(int i=0;i<panier.getPanier().length;i++){
-//				
-//				String nomSpectacle = panier.getItemAchete(i).getRep().getNomSpectacle();
-//				String dateSpectacle = panier.getItemAchete(i).getRep().getDate();
-//				String salleSpectacle = panier.getItemAchete(i).getRep().getSalle();
-//				int nbBillets = (int)panier.getItemAchete(i).getNbBillets();
-//				int totalFacture = (int)panier.getTotal();
-//							
-//				//inserer dans BD dans table Factures le idTransaction
-//				//inserer dans BD dans table ItemsFacture sur une ligne avec foreign Key le idTransaction
-//				//inserer dans BD dans table ItemsFacture le nomSpectacle
-//				//inserer dans BD dans table ItemsFacture le dateSpectacle
-//				//inserer dans BD dans table ItemsFacture le salleSpectacle
-//				//inserer dans BD dans table ItemsFacture le nbBillets
-//				//inserer dans BD dans table ItemsFacture le totalFacture
-//									
-//			}
+			int idTransation = (int) request.getSession().getAttribute("transactionId");
+			Panier lePanier = (Panier)request.getSession().getAttribute("panier");
+			
+			//on itere dans le panier achete et on rentre les informations de la facture
+			//dans la bd pour garder des traces des transactions client.
+			for(int i=0;i<lePanier.getPanier().length;i++){
+				
+				String nomSpectacle = lePanier.getItemAchete(i).getRep().getNomSpectacle();
+				String dateSpectacle = lePanier.getItemAchete(i).getRep().getDate();
+				String salleSpectacle = lePanier.getItemAchete(i).getRep().getSalle();
+				int nbBillets = (int)lePanier.getItemAchete(i).getNbBillets();
+				int totalFacture = (int)lePanier.getTotal();
+							
+				//inserer dans BD dans table Factures le idTransaction
+				//inserer dans BD dans table ItemsFacture sur une ligne avec foreign Key le idTransaction
+				//inserer dans BD dans table ItemsFacture le nomSpectacle
+				//inserer dans BD dans table ItemsFacture le dateSpectacle
+				//inserer dans BD dans table ItemsFacture le salleSpectacle
+				//inserer dans BD dans table ItemsFacture le nbBillets
+				//inserer dans BD dans table ItemsFacture le totalFacture
+				myDelegate.ajouterFacture(idTransation, nomSpectacle, dateSpectacle, salleSpectacle, nbBillets, totalFacture);
+			}
 			
 			
 			//------------------------------------------------------------------------
