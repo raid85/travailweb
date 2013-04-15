@@ -48,12 +48,12 @@ public class Controleur {
 
 
 			
-			try {
-				System.out.println(myDelegate.getSpectacles().get(0).getNom());
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				System.out.println(myDelegate.getSpectacles().get(0).getNom());
+//			} catch (ClassNotFoundException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			try {
 				request.getSession().setAttribute("spectacles",myDelegate.getSpectacles());
 			} catch (ClassNotFoundException | SQLException e) {
@@ -337,6 +337,12 @@ public class Controleur {
 				//inserer dans BD dans table ItemsFacture le nbBillets
 				//inserer dans BD dans table ItemsFacture le totalFacture
 				myDelegate.ajouterFacture(idTransation, nomSpectacle, dateSpectacle, salleSpectacle, nbBillets, totalFacture);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 			
