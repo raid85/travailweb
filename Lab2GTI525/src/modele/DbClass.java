@@ -2,7 +2,7 @@ package modele;
 import java.sql.*;
 
 public class DbClass {
-    public String sUrl="jdbc:sqlite:C:/Users/Hani/workspace/Lab2GTI525/BD/bd.sqlite"; // for advertising and debug purposes
+    public String sUrl="jdbc:sqlite:C:/Users/Hani/workspace/Lab2GTI525/BD/bd1.sqlite"; // for advertising and debug purposes
     private String sDriverName = "org.sqlite.JDBC"; 
     private Connection conn = null;
     private Statement stmt = null;
@@ -48,10 +48,12 @@ public class DbClass {
     // functions externally since they expose the database
     // behaviour which we are trying to access
     public ResultSet executeQuery(String instruction) throws SQLException {
-        return stmt.executeQuery(instruction);
+        System.out.println(instruction);
+    	return stmt.executeQuery(instruction);
     }
  
     public void execute(String instruction) throws SQLException {
+    	System.out.println(instruction);
         stmt.executeUpdate(instruction);
     }
  
